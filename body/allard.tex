@@ -1,0 +1,665 @@
+\chapter{Allard's regularity theorem}
+
+We will now move towards the main theorem of this thesis. The main theorem, and, in fact, the whole chapter, focuses not only on stationary varifolds, but varifolds with an $L^p$ condition on the generalized mean curvature (See $(\dagger)$ for the specific $L^p$ condition).
+
+In the following chapter, we assume that $U \subseteq \R^n$ is open, $0 \in U$, $V=V(M, \theta)$ is a rectifiable $m$-varifold in $U$, and that $V$ has generalized mean curvature $H$ in $U$ as defined in \cref{def: generalized mean curvature}. We also assume that $\rho > 0$ is such that $B_{\rho}(0) \subseteq U$ and continue to assume that $m \le n$.
+
+\section{Tilt-Excess Decay Lemma}
+\begin{definition}
+If $B_{\sigma}(\xi) \subseteq U$, and $T$ is an $m$-dimensional subspace of $\R^n$, we define the \textbf{tilt-excess}, $E(\xi, \sigma, T)$ relative to the rectifiable $m$-varifold $V$ by
+\[
+    E(\xi, \sigma, T) = \sigma^{-m} \int_{B_{\sigma}(\xi) } |p_{T_xM} - p_T|^2 \, d\mu_V
+\]
+In the above, $p_{T_xM}$ and $p_T$ specify the orthogonal projections of $U$ onto the respective spaces $T_xM$ and $T$.
+\end{definition}
+
+For some given subspace $T$, we see that the tilt-excess $E(\xi, \sigma, T)$ measures the mean square deviation of $T$ away from the approximate tangent space $T_xM$, in a small area around $\xi$.
+
+We note that if $T=\R^m \times \{0\}$, and $(e_{ij})$, $(\varepsilon_{ij})$ denote the $n \times n$ matrices of $p_{T_xm}$ and $p_{T}$ respectively, then since these matrices are idempotent and have trace $=m$ we get that
+\begin{align*}
+    |p_{T_xM} - p_T|^2 &= 2\sum_{i,j}(e_{ij}^2 + \varepsilon_{ij}^2 - 2e_{ij}\varepsilon_{ij}) \\
+    &= 2(m-\sum_{j=1}^m e_{jj}) \\
+    &= 2\sum_{j=m+1}^n e_{jj} \\
+    &= 2\sum_{j=1}^{n-m} |\nabla^M x_{m+j}|^2
+\end{align*}
+hence in this case
+\begin{align}
+    E(\xi, \sigma,T) = 2\sigma^{-m}\int_{B_{\sigma}(\xi)} \sum_{i=1}^k \left|\nabla^M x_{m+i}\right|^2 \, d\mu_V \label{eq: 4.3}
+\end{align}
+
+\begin{lemma}\label{lem: before holder}
+If $B_{\rho}(\xi) \subseteq U$, then for any $m$-dimensional subspace $T \subseteq \R^n$
+\[
+    E(\xi, \rho/2, T) \le C\rho^{-m} \int_{B_{\rho}(\xi)} \paren{ \frac{\Dist(x-\xi, T)}{\rho} } \, d\mu_V + C\rho^{2-m} \int_{B_{\rho}(\xi)} |H|^2 \, d\mu_V,
+\]
+for some constant $C=C(m)$.
+\end{lemma}
+\begin{proof}
+We can assume without loss of generality that $\xi = 0$ and that $T=\R^m \times \{0\}$. Recalling \cref{def: generalized mean curvature} of the generalized mean curvature, the idea of this proof is to find some suitable $X$ to put in that formula that will yield the wanted result. Given $x=(x_1,\dots, x_n) \in U$, define $x'=(0, \dots, 0,x_{m+1}, \dots, x_n)$, then our suitable choice will be
+\[
+    X = \zeta^2(x)x'
+\]
+where $\zeta \in C_c^1(U)$, with $\zeta \ge 0$, is to be found below.
+Now, if $(e_{ij})$ represents the matrix of the projection $p_{T_xM}$ relative to the standard normal basis for $\R^n$, we have
+\[
+    \Div_M(x') = \sum_{i=m+1}^{n} e_{ii}
+\]
+for $\mu_V$-a.e. $x \in M$ by the definition of $\Div_M$.
+We then denote by $(\varepsilon_{ij})$ the matrix of the projection $p_{\R^m}$, and see that $\varepsilon_{ij}=0$ if $i>m$. Then remembering that projections are idempotent, and noting that the trace of $(e_{ij})$ equals $n$, we can write
+\[
+    \Div_M(x')= \sum_{i=m+1}^n e_{ii}=(n - \sum_{i=1}^{m} e_{ii})=\sum_{i=m+1}^{n}\sum_{j=1}^{n}(e_{ij} - \varepsilon_{ij})^2=\frac{1}{2}|p_{T_xM} - p_{\R^n}|^2.
+\]
+for $\mu_V$-a.e. $x \in M$. This gives us the connection to the tilt-excess.
+So using the definition of the generalized mean curvature from \cref{def: generalized mean curvature} we get that
+\begin{align*}
+    \int \Div_M(x')\zeta^2 \, d\mu_V &= -\int 2\zeta x'\Div_M(x') \nabla^M \zeta \, d\mu_V - \int \zeta^2 H x' \, d\mu_V \\
+    &= -\int 2\zeta \sum_{i=m+1}^{n}\sum_{j=1}^{n}x_i(e_{ij} - \varepsilon_{ij})\nabla^M \zeta \, d\mu_V - \int \zeta^2 H x' \, d\mu_V \\
+    &\le \left| \int - 2\zeta \sum_{i=m+1}^{n}\sum_{j=1}^{n}x_i(e_{ij} - \varepsilon_{ij})\nabla^M \zeta - \zeta^2 H x' \, d\mu_V \right| \\
+   &\le \int \left| 2\zeta \sum_{i=m+1}^{n}\sum_{j=1}^{n}x_i(e_{ij} - \varepsilon_{ij})\nabla^M \zeta - \zeta^2 H x' \right| d\mu_V \\
+   &\le \int 2\zeta |x'| \sqrt{\Div_M(x')}|\nabla^M \zeta| + \zeta^2 |H| |x'| d\mu_V \\
+   &\le \int \frac{1}{2}\Div_M(x')\zeta^2 + 2 |x'|^2 |\nabla^M \zeta|^2 + \zeta^2 |H| |x'| d\mu_V \\
+\end{align*}
+where we used, that $\zeta \ge 0$ (when we find it), the triangle inequality, and Young's inequality. We continue, with a bound which could be made tighter, but which suffices for our use
+\[
+    \int \Div_M(x')\zeta^2 \, d\mu_V \le 4 \int |x'|^2 |\nabla^M \zeta|^2 + \zeta^2 |H| |x'| d\mu_V
+\]
+Now choosing some $\zeta$ satisfying that $\zeta \equiv 1$ on $B_{\rho/2}(0)$, $\zeta \equiv 0$ outside $B_{\rho}(0)$ and $|\nabla^M \zeta| \le 3 / \rho$ and then noting that $|x'||H| = (\rho^{-1}|x'|)(|H|\rho) \le \frac{1}{2}\rho^{-2}|x'|^2 + \frac{1}{2}(|H|\rho)^2$ the lemma follows, since with these choices, $\int \Div_M(x')\zeta^2\,d\mu_V=E(\xi,\rho/2,T)$.
+\end{proof}
+
+Given some $\beta$ assume that $\rho^{-m}\mu_V(B_{\rho}(\xi)) \le \beta$, We can then apply Hölder to estimate the term $\int_{B_{\rho}(\xi)}|H|^2\,d\mu_V$ in the above lemma and obtain
+\[
+    \rho^{2-m} \int_{B_{\rho}(\xi)}|H|^2\,d\mu_V \le C \paren{\rho^{p-m} \int_{B_{\rho}(\xi)}|H|^p\,d\mu_V }^{1/p}
+\]
+for all $p > 2$, and some $C=C(m,p,\beta)$. We can then alter the result of the lemma, to say
+\[
+    E(\xi, \rho/2, T) \le C\rho^{-m} \int_{B_{\rho}(\xi)} \paren{ \frac{\Dist(x-\xi, T)}{\rho} } \, d\mu_V + C \paren{\rho^{p-m} \int_{B_{\rho}(\xi)}|H|^p\,d\mu_V }^{1/p}
+\]
+for $p \ge 2$.
+
+For the rest of this chapter, we are going to assume, that for some $\delta \in (0, 1/2)$ that we specify below, and $\mu_V = \Haus^m \llcorner \theta$, that
+\begin{enumerate}
+\item $\theta \ge 1$ $\mu_V$-a.e.
+\item $0 \in \Supp V$
+\item $B_{\rho}(0) \subseteq V$
+\item $\frac{\mu_V(B_{\rho}(0))}{\omega_m \rho^m} \le 1 + \delta$ 
+\item $\paren{\rho^{p-m} \int_{B_{\rho}(0)}|H|^p\,d\mu_V }^{1/p} \le \delta$
+\end{enumerate}
+We denote these assumptions by a $(\dagger)$. It can be shown that for $\delta \le \delta_0(m,\ell,p) \in (0,1/4]$, subject to ($\dagger$), that
+\begin{equation}
+    \left.\begin{aligned}
+    \frac{1}{2}\le 1-C\delta &\le \frac{\mu_V(B_{\sigma}(y)}{\omega_m\sigma^m} \le 1+C\delta \le 2 \label{eq: extra bs}\\
+    0 &< \sigma \le (1-\delta)\rho
+    \end{aligned}\right\}
+\end{equation}
+for $y \in \Supp V \cap B_{\delta\rho}(0)$ and $C$ dependent on $m, \ell$ and $p$.
+
+We can then prove that locally, $\Supp\mu_V \cap B_{\delta\rho}(0)$ is approximately affine in nature.
+
+\begin{lemma}[Affine Approximation Lemma]\label{lem: affine approximation lemma}
+If $\delta \in (0, 1/4]$ and $(\dagger)$ holds, then for each $\xi \in \Supp V \cap B_{\delta\rho}(0)$ and $\sigma \in (0, 2\delta\rho]$ there is an $m$-dimensional subspace $T = T(\xi, \sigma)$ such that
+\begin{align}
+    \frac{E(\xi, \sigma/2, T)^{1/2}}{C}
+     \le \sigma^{-1} \sup\{ \Dist(x, \xi + T) \mid x \in \Supp V \cap B_{\sigma}(\xi) \} 
+    \le C \delta^{1/(2m+2)}\nonumber
+\end{align}
+for some $C = C(m, \ell, p) > 0$.
+\end{lemma}
+\begin{proof}
+By scaling and translating we can assume that $\sigma = 1$ and $\xi = 0$, so then since $\delta \le 1/4$ we have $(1-\delta)\rho/(\delta\rho) \ge 3$, and \eqref{eq: extra bs} holds for any $\sigma \le 2$, and any $y \in \Supp V \cap B_1(0)$.
+
+By the Monotonicity formula (\cref{thm: monotonicity formula}) together with $(\dagger)$ we get that
+\begin{equation}
+    \int_{B_2(y)} | p_{(T_xM)^{\perp}} (x - y) |^2 \le \int_{B_2(y)} |p_{(T_xM)^{\perp}} (x - y)|^2 |x-y|^{-m-2}\, d\mu_V \le C\delta \label{eq: projection bound}
+\end{equation}
+for all $y \in \Supp V \cap B_1(0)$ and some $C=C(m,\ell,p)$. Now let $\alpha \in (0,1)$ be given, and recall that if $K$ is compact and $\eta > 0$, then any maximal pairwise disjoint family $B_{\eta/2}(y_i)$ with $y_i \in K$ has the property that $K \subseteq \bigcup_i B_{\eta}(y_i)$. Taking $\eta = \delta^{\alpha}$, we can use this, and get pairwise disjoint balls $B_{\delta^{\alpha}/2}(y_1), \dots, B_{\delta^{\alpha}/2}(y_N)$ with $y_i \in \Supp V \cap B_1(0)$, such that
+\begin{equation}
+    \Supp V \cap B_1(0) \subseteq \bigcup_{i=1}^N B_{\delta^{\alpha}}(y_i).\label{eq: helpful subsets}
+\end{equation}
+Using \eqref{eq: extra bs} with $\sigma = \delta^{\alpha}\rho$ we get
+\[
+    \frac{\delta^{\alpha m}}{C} \le \mu_V(B_{\delta^{\alpha}/2}(y_i)) \le C \delta^{\alpha m}
+\]
+for all $i = 1, \dots, N$ and some $C=C(m, \ell, p)$. This implies that
+\[
+    \frac{N \delta^{\alpha n}}{C} \le \sum_{i=1}^N \mu_V(B_{\delta^{\alpha}/2} (y_i)) = \mu_V\paren{ \bigcup_{i=1}^N B_{\delta^{\alpha}/2 } (y_i)} \le C \mu_V(B_2(0)) \le 2C.
+\]
+Therefore $N \le C \delta^{-\alpha m}$. So using \eqref{eq: projection bound} with $y=y_j$ while noting that $B_2(y_i) \supseteq B_1(0)$ for each $i$, we get that
+\[
+    \int_{B_1(0)} \sum_{i=1}^{N} | p_{T_xM^{\perp}} (x-y_i)|^2 \, d\mu_V \le NC\delta \le C\delta^{1-\alpha m}.
+\]
+So for any $k \ge 1$ we can write
+\begin{equation}
+    \sum_{i=1}^N | p_{T_xM^{\perp}} (x-y_i)|^2 \le Ck\delta^{1-\alpha m},\label{eq: approx 4}
+\end{equation}
+except maybe on a set $x \in B_1(0) \cap \Supp V$ which has $\mu_V$-measure $1/k$. By \eqref{eq: extra bs} we see that $\mu_V(B_{\delta^{\alpha}}(0)) \ge C^{-1}\delta^{\alpha m}$, which implies that we can, by taking $k = C\delta^{-\alpha m}$, ensure that \eqref{eq: approx 4} holds for some $x_0 \in \Supp V \cap B_{\delta^{\alpha}}(0)$. This shows that there is an $x_0 \in \Supp V \cap B_{\delta^{\alpha}}(0)$ such that
+\[
+    \sum_{i=1}^N | p_{T_{x_0}M^{\perp}} (x_0-y_i)|^2 \le C\delta^{1-2\alpha m}
+\]
+and therefore also that
+\[
+    | p_{T_{x_0}M^{\perp}} (x_0-y_i)| \le C\delta^{1/2-\alpha m}
+\]
+for all $i =1, \dots, N$. Furthermore since $x_0 \in B_{\delta^{\alpha}}(0)$, then $|x_0| \le \delta^{\alpha}$ and hence
+\[
+    | p_{T_{x_0}M^{\perp}} y_i| \le C(\delta^{1/2-\alpha m} + \delta^{\alpha} )
+\]
+for all $i =1, \dots, N$.
+
+Finishing off, we select $\alpha = \frac{1}{2m+2}$, because then $1/2-\alpha m = \alpha$, which yields that all points $y_1, \dots, y_N$ are in the $C\delta^{1/(2m+2)}$ neighborhood of the subspace $T_0=T_{x_0}M$, and thus \eqref{eq: helpful subsets} gives us that
+\[
+    \Dist(y,T_0) \le C\delta^{1/(2m+2)}
+\]
+for all $y \in \Supp V \cap B_1(0)$. Thus the second inequality in the theorem is shown by taking $T=T_0 = T_{x_0}M$, and the first inequality follows from our discussion on using the Hölder inequality after \cref{lem: before holder}.
+\end{proof}
+
+We can then use this lemma to prove the following Lipschitz approximation lemma, which states that in a small disc, the weight measure for any varifold $V$ can be approximated by a well-behaved Lipschitz mapping up to some error given by the tilt-excess.
+\begin{lemma}[Lipschitz Approximation Lemma]\label{lem: lipschitz approximation lemma}
+For every $L \in (0,1]$ there is a $\beta=\beta(m,\ell,p) \in (0,\frac{1}{4}]$ such that if $\delta \in (0,(\beta L)^{2m+2}]$, if $(\dagger)$ holds, if the subspaces $T(\sigma,\xi)$ are as in the affine approximation \cref{lem: affine approximation lemma}, if $\sigma_0 = \delta \rho$ and if we furthermore assume (without loss of generality) that $T(2\sigma_0,0) = \R^m \times \{0\}$, then there is a Lipschitz mapping $f:B_{\sigma_0/2}^n (0) \to \R^{\ell}$, such that $\Lip f \le L$, $\sup|f| \le C\delta^{1/(2m+2)}$ and such that
+\begin{align*}
+    &\mu_V\paren{ B_{\sigma_0/2}(0) \cap (\Supp \mu_V \setminus \Graph f) } + \Haus^m \paren{ B_{\sigma_0/2}(0) \cap (\Graph f \setminus \Supp \mu_V) }\\
+    &\qquad\qquad \le CL^{-2} \int_{B_{\sigma_0}(0)} |p_{T_xM} - p_{T(2\sigma_0,0)} |^2 \, d\mu_V
+\end{align*}
+for some $C=C(m,\ell,p)$.
+\end{lemma}
+\begin{proof}
+First, lets assume that $\delta \in (0,\frac{1}{4}]$ is arbitrary. Then the affine approximation \cref{lem: affine approximation lemma} tells us that
+\begin{equation}
+    \sigma_0^{-m} \int_{ B_{\sigma_0}(0) } |p_{T_xM} - p_{T_0}|^2\, d\mu_V(x) \le C\delta^{1/(m+1)}
+\end{equation}
+for some $C=C(m, \ell, p)$. Let, for the moment $\beta\in(0,\frac{1}{4}]$ be arbitrary and define
+\[
+    G := \{ y \in \Supp \mu_V \cap B_{ 3\sigma_0/4 }(0) \mid \sup_{\sigma \in (0,\sigma_0/2]} \sigma^{-m} \int_{B_{\sigma/2}(y)} |p_{T_xM} - p_{T_0}|^2 \, d\mu_V \le \beta^2 L^2 \}.
+\]
+Then if $y \in \Supp \mu_V \cap B_{3\sigma_0/4}(0) \setminus G$ then there exists some $\sigma \in (0,\sigma_0/2]$ for which
+\begin{equation}
+    \beta^2L^2\sigma^m \le \int_{B_{\sigma/2}(y)} |p_{T_xM} - p_{T_0}|^2 \, d\mu_V.\label{eq: bls}
+\end{equation}
+Now, The 5-times covering lemma tells us that there exists a family of disjoint balls $\{B_{\sigma_i}(y_i)\}_{i \in \N}$ with $\sigma = \sigma_i \in (0,\sigma_0/2]$ and $y=y_i \in \Supp \mu_V \cap B_{\sigma_0}(0) \setminus G$ such that \eqref{eq: bls} holds and such that
+\[
+    \Supp \mu_V \cap B_{3\sigma_0/4}(0) \setminus G \subseteq \bigcup_i B_{5\sigma_i}(y_i).
+\]
+So using \eqref{eq: bls} with $\sigma = \sigma_i$ and $y=y_i$ and summing over $i$ we get
+\begin{align*}
+    \beta^2 L^2 \mu_V(B_{3\sigma_0/4}(0) \setminus G) &\le \beta^2 L^2 \sum_i \mu_V(B_{5\sigma_i}(y_i)) \\
+    &\le \beta^2 L^2\, C \sum_i \sigma_i^n \\
+    &\le C \int_{\bigcup_iB_{\sigma_i/2}(y_i)} |p_{T_xM} - p_{T_0}|^2 \, d\mu_V \\
+    &\le C \int_{B_{\sigma_0}(0)} |p_{T_xM} - p_{T_0}|^2 \, d\mu_V
+\end{align*}
+Dividing through with $(\beta L)^2$ we thus obtain
+\[
+    \mu_V(B_{3\sigma_0/4}(0) \setminus G)\le C\beta^{-2}L^{-2} \int_{B_{\sigma_0}(0)} |p_{T_xM} - p_{T_0}|^2 \, d\mu_V.
+\]
+Next, we want to show that $G$ is entirely contained in the graph of some Lipschitz mapping. To that end, let $y_1,y_2 \in G$ be arbitrary, define $\sigma :=|y_1-y_2|$, and observe that then $\sigma \le \sigma_0$. Furthermore we see that by the definition of $G$ and $T(y_1,\sigma)$ the following two inequalities holds
+\begin{align*}
+    \sigma^{-m} \int_{B_{\sigma/2}(y_1)} |p_{T_xM} - p_{T_0}|^2 \, d\mu_V &\le \beta^2L^2 \\
+    \sigma^{-m}\int_{B_{\sigma/2}(y_1)} |p_{T_xM} - p_{T(y_1, \sigma)}|^2\, d\mu_V &\le \delta^{1/(m+1)}
+\end{align*}
+and so since $|p_{T_0} - p_{T(y_1, \sigma)}|^2 \le 2|p_{T_xM} - p_{T_0}|^2 + 2|p_{T_xM} - p_{T(y_1, \sigma)}|^2$, we get that
+\begin{align*}
+    |p_{T_0} - p_{T(y_1, \sigma)}|^2 &= C \sigma^{-m} \int_{B_{\sigma/2}(y_1)} |p_{T_0} - p_{T(y_1, \sigma)}|^2 \, d\mu_V  \\
+    &\le C \sigma^{-m} \int_{B_{\sigma/2}(y_1)} 2|p_{T_xM} - p_{T_0}|^2 + 2|p_{T_xM} - p_{T(y_1, \sigma)}|^2 \, d\mu_V \\
+    &\le C(\beta^2 L^2 + \delta^{1/(m+1)}),
+\end{align*}
+from which we obtain that
+\begin{equation}
+    |p_{T_0} - p_{T(y_1, \sigma)}| \le C(\beta L + \delta^{1/(2m+2)}).\label{eq: lipschitz (3)}
+\end{equation}
+The affine approximation lemma now gives us the following inequality
+\[
+    | p_{T(y_1,\sigma)^{\perp}} (y_1 - y_2) | = \Dist(y_2, y_1 + T(y_1, \sigma)) \le C\delta^{1/(2m+2)} \sigma
+\]
+which, with \eqref{eq: lipschitz (3)}, implies that
+\begin{align*}
+    \Dist(y_2, y_1 + T_0) &= | p_{T_0^{\perp}}(y_1 - y_2) | \\
+    &= | ( p_{T(y_1, \sigma)} + (p_{T_0^{\perp}} - p_{T(y_1, \sigma)^{\perp}}))(y_1 - y_2)| \\
+    &\le \Dist (y_2, y_1 + T(y_1, \sigma)) + | p_{T_0} - p_{T(y_1, \sigma)} | \sigma \\
+    &= C(\beta L + \delta^{1/(2m+2)} ) \sigma
+\end{align*}
+where we used that $\sigma := |y_1 - y_2|$. We will then restrict $\delta \le (\beta L)^{2m+2}$ as in the assumptions of the theorem, which enables us to write
+\[
+    \Dist(y_2, y_1 + T_0) \le C(\beta L + \delta^{1/(2m+2)} ) \sigma \le C\beta L.
+\]
+This gives us that
+\[
+    |p_{T_0^{\perp}}(y_2 - y_1)| \le C\beta L|y_1 - y_2| \le C \beta L( |p_{T_0^{\perp}}(y_1 - y_2)| + |p_{T_0}(y_1 - y_2)| )
+\]
+Restricting $C \beta \le \frac{1}{2}$ we then have that $|p_{T_0^{\perp}}(y_1)-p_{T_0^{\perp}}(y_2)| \le 2C\beta L|p_{T_0}(y_1)-p_{T_0}(y_2)|$, and since $y_1$ and $y_2$ were chosen arbitrarily in $G$ this shows that $G$ is contained in the graph of a Lipschitz mapping with corresponding Lipschitz constant $\le L$, if, indeed, we choose $\beta = \beta(m, \ell, p)$ such that $C\beta \le \frac{1}{2}$, along with the assumptions $(\dagger)$ with $\delta \in (0,(\beta L)^{2m+2}]$.
+
+Employing the Lipschitz extension theorem we see that there exists some Lipschitz mapping $f=(f_1,\dots, f_{\ell}):\R^m \to \R^{\ell}$ with $\Lip f \le C\beta L$ ($\le L$) such that $G \subseteq \Graph f$, and
+\begin{equation}
+    \mu_V(B_{3\sigma_0/4}(0) \setminus G) \le CL^{-2} \int_{B_{\sigma_0}} |p_{T_xM} - p_{T_0}|^2\, d\mu_V.\label{eq: final use}
+\end{equation}
+Furthermore, we have by the affine approximation lemma that for all $x$ such that $(x,f(x)) \in G$, then $|f_i(x)| \le C\delta^{1/(2m+2)}$ for all $i = 1, \dots, \ell$. Thus replacing $f_i$ with 
+\[
+    \tilde f_i = \max\{\min\{ f_i, C\delta^{1/(2m+2)} \}, -C\delta^{1/(2m+2)}\}
+\]
+for all $i = 1, \dots, \ell$, we can assume that $\sup|f| \le C\delta^{1/(2m+2)}$, and it now only remains to show that
+\begin{equation}
+    \Haus^m(B_{\sigma_0/2}(0) \cap (\Graph f \setminus \Supp \mu_V)) \le CL^{-2} \int_{B_{\sigma_0}(0) } |p_{T_xM} - p_{T_0}|^2\, d\mu_V.\label{eq: remains}
+\end{equation}
+To do this, let $\eta \in (\Graph f \setminus \Supp \mu_V) \cap B_{\sigma_0/2}(0)$ be arbitrary and choose $\sigma \in (0,\sigma_0/4]$ such that $B_{\sigma}(\eta) \cap \Supp \mu_V = \emptyset$ and $B_{2\sigma}(\eta) \cap \Supp \mu_V \neq \emptyset$.
+We can assure such an $\eta$ exists, since $\eta \in B_{\sigma_0/2}$ and $0 \in \Supp \mu_V$. 
+Then this, along with the monotonicity formula (\cref{thm: monotonicity formula}) tells us that
+\begin{align*}
+    \mu_V(B_{3\sigma}(\eta)) &= \mu_V(B_{3\sigma}(\eta)) - \mu_V(B_{\sigma}(\eta)) \\
+    &\le C\sigma^m \int_{ B_{3\sigma}(\eta)\setminus B_{\sigma}(\eta) } |x - \eta|^{-m} \left| p_{(T_xM)^{\perp}} \paren{ \frac{x - \eta}{|x - \eta|} }\right|^2\, d\mu_V + C\delta\sigma^m.
+\end{align*}
+Since $\Supp \mu_V \cap B_{2\sigma}(\eta) \neq \emptyset$ we can use \eqref{eq: extra bs} to see that $\frac{\mu_V(B_{3\sigma}(\eta))}{\omega_m \sigma^m} \ge 1/2$, which, together with the above inequality implies that for some suitable $\delta=\delta(m,\ell,p)$,
+\begin{align*}
+    \sigma^m &\le C\int_{B_{\sigma}(\eta)} \left| p_{(T_xM)^{\perp}} \paren{\frac{x - \eta}{\sigma}} \right|^2\, d\mu_V \\
+    &= C\int_{B_{\sigma}(\eta)} \left| ((\Id(x) - p_{T_0}) + (p_{T_0} - p_{T_xM})) \paren{\frac{x - \eta}{\sigma}} \right|^2\, d\mu_V \\
+    &\le 2C\paren{ \int_{B_{\sigma}(\eta)} \left| p_{T_0^{\perp}} \paren{\frac{x-\eta}{\sigma}} \right|^2\,d\mu_V + \int_{B_{\sigma(\eta)}} \left| (p_{T_xM} - p_{T_0})\paren{\frac{x-\eta}{\sigma}} \right|^2\, d\mu_V } \\
+    &\le C\bigg( \int_{B_{\sigma}(\eta)\cap F} \left| p_{T_0^{\perp}} \paren{\frac{x-\eta}{\sigma}} \right|^2\,d\mu_V + \int_{B_{\sigma}(\eta)\setminus F} 1\,d\mu_V + \\
+    &\qquad\quad \int_{B_{\sigma(\eta)}} \left| (p_{T_xM} - p_{T_0})\paren{\frac{x-\eta}{\sigma}} \right|^2\, d\mu_V \bigg) \\
+    &= C\bigg( \int_{B_{\sigma}(\eta)\cap F} \left| p_{T_0^{\perp}} \paren{\frac{x-\eta}{\sigma}} \right|^2\,d\mu_V + \mu_V(B_{\sigma}(\eta)\setminus F) + \\
+    &\qquad\quad \int_{B_{\sigma(\eta)}} \left| (p_{T_xM} - p_{T_0})\paren{\frac{x-\eta}{\sigma}} \right|^2\, d\mu_V \bigg)
+\end{align*}
+where we used that $p_{T^{\perp}}(x)=\Id(x) - p_T(x)$ for any subspace $T \subseteq \R^n$, and that $(x-\eta)/\sigma \le 1$ for all $x \in B_{\sigma}(\eta)$, hence the projection is less than 1. Now, since $\Lip f \le \beta L$, we have for all $x,y \in \Graph f \cap B_{\sigma}(\eta)$
+\[
+    \left| p_{T_0^{\perp}} \paren{\frac{x-y}{\sigma}} \right| \le C\beta,
+\]
+and using \eqref{eq: extra bs} to see that $\frac{\mu_V(B_{\sigma}(\eta))}{\omega_m\sigma^m} \le 2$, we get that
+\begin{equation}
+    \sigma^m \le C\paren{\beta L \sigma^m + \mu_V(B_{\sigma}(\eta) \setminus \Graph f) + \int_{B_{\sigma}(\eta)} | p_{T_xM} - p_{T_0} |^2\, d\mu_V }.\label{eq: siudf}
+\end{equation}
+Choosing $\beta \in (0, \min\{\frac{1}{2C},1/4\}]$, we assure that $C\beta \le 1/2$ which yields by rearranging \eqref{eq: siudf}
+\[
+    \sigma^m \le C\paren{ \mu_V( B_{\sigma}(\eta) \setminus \Graph g ) + \int_{B_{\sigma}(\eta)} | p_{T_xM} - p_{T_0} |^2\, d\mu_V }
+\]
+Now, the collection of balls $B_{\sigma}(\eta)$ cover $B_{\sigma_0/2}(0) \cap \Graph f \setminus \Supp \mu_V$ by definition, so by the 5-times covering \cref{lem: 5-times covering} there exists some pairwise disjoint collection of balls $B_{\sigma_i}(\eta_i)$ such that for all $i$ and $\bigcup_i B_{5\sigma_i}(\eta_i) \supseteq B_{\sigma_0/2}(0) \cap \Graph f \setminus \Supp \mu_V$ we have
+\begin{equation}
+    \sigma_i^m \le C\paren{ \mu_V( B_{\sigma_i}(\eta_i) \setminus \Graph f ) + \int_{B_{\sigma_i}(\eta_i)} | p_{T_xM} - p_{T_0} |^2\, d\mu_V }.\label{eq: fpsdiuf}
+\end{equation}
+Since $f$ is Lipschitz with $\Lip f \le 1$, we have that $\Haus^m(B_{5\sigma_i}(\eta_i) \cap \Graph f) \le C\sigma_i^m$ for all $i$ and therefore \eqref{eq: fpsdiuf} shows \eqref{eq: remains} by
+\begin{align*}
+    \Haus^m( B_{\sigma_0/2}(0) \cap \Graph f \setminus \mu_V ) &\le \Haus^m\paren{F \cap \bigcup_i B_{5\sigma_i}(\eta_i)} \\
+    &\le \sum_i \Haus^m(\Graph f \cap B_{5\sigma_i}(\eta_i)) \\
+    &\le C \sum_i \paren{ \mu_V(B_{\sigma_i}(\eta_i) \setminus \Graph f) + \int_{B_{\sigma_i}(\eta_i)} | p_{T_xM} - p_{T_0} |^2\, d\mu_V } \\
+    &\le C \paren{ \mu_V(\bigcup_i B_{\sigma_i}(\eta_i) \setminus \Graph f) + \int_{\bigcup_i B_{\sigma_i}(\eta_i)} | p_{T_xM} - p_{T_0} |^2\, d\mu_V } \\
+    &\le C \paren{ \mu_V( B_{3\sigma_0/4}(0) \setminus \Graph f) + \int_{B_{\sigma_0}(0)} | p_{T_xM} - p_{T_0} |^2\, d\mu_V } \\
+    &\overset{\eqref{eq: final use}}{\le} C\int_{B_{\sigma_0}(0)} | p_{T_xM} - p_{T_0} |^2\, d\mu_V
+\end{align*}
+which finishes the proof.
+\end{proof}
+
+The following corollary shows that given some further restrictions on the regularity of $V$, that in fact within some small ball, the support of $V$ is the graph of a Lipschitz mapping.
+
+\begin{corollary}\label{cor: lipschitz corollary}
+Assuming the notation and assumptions of the Lipschitz approximation \cref{lem: lipschitz approximation lemma}, then $\beta = \beta(m, \ell, p)$ can be chosen such that if
+\[
+    \sup_{\substack{\xi \in \Supp \mu_V \cap B_{\sigma_0/2}(0), \\ \sigma \in (0, \sigma_0/2]}} \sigma^{-m} \int_{B_{\sigma}(\xi)} |p_{T_xM}-p_{T_0}|^2\, d\mu_V \le (\beta L)^2
+\]
+then for some Lipschitz mapping $f:B^m_{\sigma_0/4}(0) \to \R^{\ell}$ with $\Lip f \le L$ and $\sup|f| \le C\delta^{1/(2m+2)}\sigma_0$ we have
+\[
+    \Supp \mu_V \cap B_{\sigma_0/4}(0) = \Graph f \cap B_{\sigma_0/4}(0)
+\]
+\end{corollary}
+\begin{proof}
+We see that if 
+\[
+    \sup_{\substack{\xi \in B_{\sigma_0/2}(0), \\ \sigma \le \sigma_0/2}}  \int_{B_{\sigma}(\xi)} |p_{T_xM}-p_{T_0}|^2\, d\mu_V \le (\beta L)^2
+\]
+then the set $G$ in the proof of the Lipschitz approximation lemma by definition includes all of $\Supp \mu_V \cap B_{\sigma_0/2}(0)$, hence $\Supp \mu_V \cap B_{\sigma_0/2}(0) \subseteq \Graph f$ where $f$ has the properties stated in the corollary. Moreover, if $\eta \in \Graph f \cap B_{\sigma_0/4}(0) \setminus \Supp \mu_V$ then \eqref{eq: siudf} from the proof of the Lipschitz approximation lemma gives
+\[
+    \sigma^m \le C \int_{B_{\sigma}(\eta)} |p_{T_xM} - p_{T_0}|^2 \, d\mu_V \le C(\beta L)^2\sigma^m \le C\beta^2\sigma^m
+\]
+for some $\sigma \in (0,\sigma_0/4]$. However this is impossible with a $\beta = \beta(m, \ell, p)$ satisfying $C\beta^2 \le 1$, hence with such a $\beta$ we have $\Graph f \cap B_{\sigma_0/4}(0) \setminus \Supp \mu_V = \emptyset$.
+\end{proof}
+
+We are now ready to prove the following lemma which will be crucial for the Allard regularity theorem. It shows that some weakly differentiable functions can be approximated well by harmonic functions within some small ball.
+
+Recall that $\mathring{B}_1^m(0)$ is the open unit ball in $\R^m$, and that for some open set $\Omega \subseteq \R^n$ a function $u:\Omega \to \R$ is said to be harmonic if
+\[
+    \nabla^2 u := \frac{\partial^2 u}{\partial x_1^2} + \dots + \frac{\partial^2 u}{\partial x_n^2} = 0.
+\]
+
+\begin{lemma}[Harmonic Approximation lemma]\label{lem: harmonic approximation}
+Let $B:=\mathring{B}_1^m(0)$. Then for all $\varepsilon > 0$ there is a $\delta = \delta(m, \varepsilon) > 0$ such that for all $f \in W^{1,2}(B)$ for which
+\begin{align*}
+    &\int_B |\nabla f|^2 \le 1\\
+    &\left| \int_B \nabla f \cdot \nabla \varphi \, d\lambda^m \right| \le \delta \sup|\nabla \varphi|, \qquad \forall \varphi \in C_c^{\infty}(B)
+\end{align*}
+there is a harmonic function $u$ on $B$ such that $\int_B |\nabla u|^2 \le 1$ and
+\[
+    \int_B (u-f)^2 \, d\lambda_m \le \varepsilon.
+\]
+\end{lemma}
+\begin{proof}
+Assume for the sake of contradiction that the lemma is false. Then there is some $\varepsilon > 0$ and some sequence $\{f_k\}_{k \in K} \subseteq W^{1,2}(B)$, for some index set $K \subseteq \N$, for which 
+\begin{align}
+    &\int_B |\nabla f_k|^2 \le 1 \\
+    &\left| \int_B \nabla f_k \cdot \nabla \varphi \, d\lambda^m \right| \le k^{-1} \sup|\nabla \varphi|\label{eq: oisjfds}
+\end{align}
+but where
+\begin{equation}
+    \int_B |u - f_k|^2 > \varepsilon,\label{eq: contr}
+\end{equation}
+for every harmonic functions $u$ on $B$ with $\int_B |\nabla u|^2 \le 1$.
+
+Define
+\[
+    \tau_k = \frac{\int_B f_k\, d\lambda_m}{\omega_m},
+\]
+then the Poincaré inequality (\cref{thm: poincare inequality}) says that
+\[
+    \int_B |f_k - \tau_k|^2 \le C \int_B |\nabla f_k|^2 \le C
+\]
+and then the Rellich-Kondrachov compactness \cref{thm: Rellich-Kondrachov}, or rather the remark afterwards, says that there exists some subsequence $K' \subseteq K$, and some $w \in W^{1,2}(B)$ with $\int_B |\nabla w|^2 \le 1$ such that $\Vert (f_{k'}-\tau_{k'}) - w\Vert_{L^2(B)} \to 0$, and such that $\nabla f_{k'} \to \nabla w$ weakly in $L^2(B)$ for $k' \in K$.
+
+Now, \eqref{eq: oisjfds} and the weak convergence of $\nabla f_{k'}$ to $\nabla w$ implies that
+\[
+    \int_B \nabla w \nabla\varphi\,d\lambda_m = \lim_k \int_B \nabla f_k \nabla\varphi\, d\lambda_m = 0
+\]
+for all $\varphi \in C_c^{\infty}(B)$. This means that $w$ is harmonic in $B$ and
+\[
+    \int_B |(f_{k'} - \tau_{k'}) - w|^2 \to 0.
+\]
+But then $w+\tau_{k'}$ is harmonic, which contradicts \eqref{eq: contr}.
+\end{proof}
+
+As a short aside, which we shall use later, we see that if $u$ is harmonic on $B_{\sigma}(0)$, and $\ell$ is the affine approximation of $u$, that is $\ell(x)=u(0) + x\cdot \nabla u(0)$, then
+\begin{equation}
+    \left.\begin{aligned}
+    |\ell(0)| &= |u(0)| \le C\sigma^{-m/2} \Vert u \Vert_{L^2(B_{\sigma}(0))} \\
+    |\nabla\ell| &= |\nabla u(0)| \le C\sigma^{-m/2}\Vert \nabla u \Vert_{L^2(B_{\sigma}(0))} \label{eq: harmapproxaside}\\
+    \sup_{B_{\eta\sigma}(0)} |u-l| &\le (\eta\sigma)^2\sup_{B_{\eta\sigma}(0)} |D^2u| \le (\eta\sigma)^2\sup_{B_{\sigma/2}(0)}|D^2u| \le C\eta^2\sigma^{1-m/2}\Vert \nabla u\Vert_{L^2(B_{\sigma}(0))}
+    \end{aligned}\right\}
+\end{equation}
+for $\eta \in (0,1/4]$ and some $C = C(m)$. We will not prove this.
+
+
+In the following, let $\ell = n - m$, and let
+\[
+    E_*(\xi,\sigma,T) := \max\left\{ E(\xi,\sigma,T), \delta^{-1} \paren{ \sigma^{p-m} \int_{B_{\sigma}(\xi)} |H|^p\, d\mu_V }^{2/p} \right\}
+\]
+where $\delta$ is as in ($\dagger$).
+
+Then the following theorem says, that if we know that the tilt-excess $E_*$ behaves nicely on a small disc, we can bound the behavior of the tilt-excess on larger discs.
+\begin{theorem}[Tilt-excess Decay Theorem]\label{thm: tilt-excess decay theorem}
+There are constants $\eta=\eta(m,\ell,p),\delta_0=\delta_0(m,\ell,p) \in (0,1/4]$, such that if $(\dagger)$ holds for some $\delta \in (0,\delta_0]$, $\rho \in (0,\delta\rho/2]$, $\xi \in \Supp\mu_V \cap B_{\delta\rho}(0)$ and $T$ is an $m$-dimensional subspace of $\R^n$, then
+\[
+    E_{*}(\xi,m\sigma,S) \le \eta^{2(1-m/p)}E_{*}(\xi,\sigma,T)
+\]
+for some $m$-dimensional subspace $S \subseteq \R^n$.
+\end{theorem}
+\begin{proof}
+We can by translation and rotation assume that $\xi = 0$ and that $T = \R^m \times \{0\}$. Using the Affine approximation \cref{lem: affine approximation lemma} we see that the subspace $\tilde T = T(0,2\sigma)$ (In the notation of the affine approximation lemma), has the property that
+\begin{equation}
+    E(0,\sigma,\tilde T) \le C\delta^{1/(m+1)},\label{eq: tefsfd}
+\end{equation}
+for some $C=C(m,\ell,p)$. Hence we can assume the same inequality for $T$ instead, that is, we can assume
+\begin{equation}
+    E(0,\sigma, T) \le C\delta^{1/(m+1)}\label{eq: te1}
+\end{equation}
+because if this was not the case, we could just prove the lemma for $\tilde T$ which would imply the lemma for $T$.
+
+Now, the affine approximation \cref{lem: affine approximation lemma} implies that
+\[
+    \sup_{x\in \Supp\ \mu_V \cap B_{\sigma}(0)} \Dist(x,\tilde T) \le C\delta^{1/(2m+2}
+\]
+which together with \eqref{eq: te1} implies that $|p_T-p_{\tilde T}| \le C\delta^{1/(2m+2)}$, and hence
+\[
+    \sup_{x\in \Supp\ \mu_V \cap B_{\sigma}(0)} \Dist(x, T) \le C\delta^{1/(2m+2}
+\]
+which can also be written as
+\begin{equation}
+    \sup_{B_{\sigma}(0) \cap \Supp \mu_V} \sum_{i=1}^{\ell} |x_{m+i}| \le C\delta^{1/(2m+2)}\sigma,\label{eq: supsum}
+\end{equation}
+where $\ell = n-m$. We can then apply the Lipschitz approximation \cref{lem: lipschitz approximation lemma} with $L=1$, to obtain a Lipschitz mapping $f=(f_1,\dots, f_{\ell}):B^m_{\sigma}(0) \to \R^{\ell}$ where $\Lip f \le 1$, $\sup|f| \le C\delta^{1/(2m+2)}\sigma$ and
+\begin{align}
+    \mu_V(\Supp\mu_V \cap B_{\sigma}(0) \setminus \Graph f) + \Haus^m(\Graph f \cap B_{\sigma}(0) \setminus \Supp\mu_V) \le CE_0\sigma^m\label{eq: te4}
+\end{align}
+where $E_0:=E_*(0,\sigma,T)$. Restricting, we can assume that $C\delta^{1/(2m+2)}\le \frac{1}{4}$ which, with \eqref{eq: supsum}, implies that
+\begin{align}
+    (B_{\sigma/2}^m(0) \times \R^{\ell}) \cap \Supp \mu_V \subseteq B_{\sigma/2}^m(0) \times B_{\sigma_4}^{\ell}(0).\label{eq: lsjdf}
+\end{align}
+We now want to prove that $f_i$ is well-approximated by a harmonic function for all $i=1, \dots, \ell$. To that end, let $X=\varphi e_{m+i}$ for $\varphi \in C_c^1(\mathring{B}_{\sigma}(0))$, where $e_{j}$ are the standard basis vectors of $\R^n$. Then we note that by the definition of the generalized mean curvature $H$ of $V$ with this given $X$, we get that
+\begin{equation}
+    \int_M \nabla_{m+i}^M \varphi \, d\mu_V = -\int_M e_{m+i}\cdot H\varphi\, d\mu_V, \qquad \varphi \in C_c^1(\mathring{B}_{\sigma}(0))\label{eq: te6}
+\end{equation}
+for all $i = 1, \dots, \ell$, where $\nabla_{m+i}^M = p_{T_xM}(e_{m+i})\cdot \nabla^M = (\nabla^M x_{m+i})\nabla^M$.
+That is,
+\[
+    \int_M (\nabla^M x_{m+i})\nabla^M \varphi \, d\mu_V = -\int_M e_{m+i}\cdot H\varphi\, d\mu_V, \qquad \varphi \in C_c^1(\mathring{B}_{\sigma}(0)).
+\]
+Now, for $x = (x_1, \dots, x_m)\in \R^n$, define $\tilde f_i(x_1, \dots, x_n):=f_i(x_1, \dots, x_m)$. Then all $x \in M_1=M \cap \Graph f$ has the form $x=(x_1, \dots, x_m, f_1(x), \dots, f_{\ell}(x))$, hence $x_{m+i} = \tilde f_i(x)$ on $M_1$. Thus by the definition of $\nabla^M$ we have
+\begin{align}
+    \nabla^M x_{m+i} = \nabla^M \tilde f_i(x)\label{eq: eqxf}
+\end{align}
+for $\mu_V$-a.e. $x \in M_1$. Hence \eqref{eq: te6} can be rewritten as
+\begin{align}
+    \int_{M_1} (\nabla^M \tilde f_i) \cdot (\nabla^M \varphi)\, d\mu_V = - \int_{M\setminus M_1} (\nabla^M x_{m+i}) \cdot (\nabla^M \varphi)\, d\mu_V - \int_M e_{m+i}\cdot H\varphi\, d\mu_V, \label{eq: tesome}
+\end{align}
+Then, using Hölder's inequality with \eqref{eq: extra bs} we get
+\begin{align*}
+    \int_{B_{\sigma}(0)} |H|\, d\mu_V &= \int_{B_{\sigma}(0)} |H\cdot 1|\, d\mu_V \\
+    &\le \paren{\int_{B_{\sigma}(0)} |H|^p\, d\mu_V}^{1/p}\paren{\int_{B_{\sigma}(0)} 1\, d\mu_V}^{1-1/p} \\
+    &= \paren{\int_{B_{\sigma}(0)} |H|^p\, d\mu_V}^{1/p}(\mu(B_{\sigma}(0)))^{1-1/p} \\
+    &= \delta^{1/2}\sigma^{m/p-1}\sqrt{\delta^{-1}\paren{\sigma^{p-m} \int_{B_{\sigma}(0)}|H|^p\,d\mu_V }^{2/p} } (\mu(B_{\sigma}(0)))^{1-1/p} \\
+    &\overset{\eqref{eq: extra bs}}{\le} \delta^{1/2}\sigma^{m/p-1}E_0^{1/2} (2\omega_m \sigma^m)^{1-1/p} \\
+    &\le \delta^{1/2}\sigma^{m/p-1}E_0^{1/2} C \sigma^{m-m/p} \\
+    &= C\delta^{1/2}\sigma^{m-1}E_0^{1/2}, \\
+\end{align*}
+which implies, with \eqref{eq: te4} and \eqref{eq: tesome}, that for every smooth $\varphi$ with $\Supp \varphi \subseteq \mathring{B}_{\sigma}(0)$, we have
+\begin{align}
+    \left| \sigma^{-m} \int_{M_1} (\nabla^M \tilde f_i)\cdot \nabla^M \varphi \, d\mu_V \right| &\le C(\sigma^{-1}\sup|\varphi| \delta^{1/2}E_0^{1/2} + \sup|\nabla \varphi| E_0) \nonumber \\
+    &\le C\sup|\nabla \varphi| (\delta^{1/2}E_0^{1/2} + E_0),\label{eq: te8}
+\end{align}
+and using \eqref{eq: eqxf} and \eqref{eq: 4.3} we see that
+\begin{align}
+    \sigma^{-m} \int_{M_1 \cap B_{\sigma}(0)} |\nabla^M \tilde f_i|^2\, d\mu_V \le E_0.\label{eq: te9}
+\end{align}
+Doing the same trick as above with $f$ and $\tilde f$, we can, for every $\varphi_0 \in C_c^1(B_{\sigma/2}^m(0))$ associate a new function $\tilde \varphi_0(x_1, \dots, x_n)=\varphi_0(x_1, \dots, x_m)$ where $\Supp \tilde \varphi_0 = \Supp \varphi_0 \times \R^{\ell} \subseteq B_{\sigma/2}^m(0) \times \R^{\ell}$.
+Furthermore by \eqref{eq: lsjdf} there is some function $h \in C_c^1(B_{\sigma}(0))$ for which $h \equiv 1$ in some neighborhood around $\Supp \mu_V \cap \Supp \tilde \varphi_0$. Thus we can replace $\varphi$ in the above with $\tilde \varphi_0 h$, or, since $h \equiv 1$ on some neighborhood of $\Supp \mu_V \cap \Supp \tilde \varphi_0$, we can instead replace $\varphi$ with $\tilde \varphi_0$. So lets do that, and note, that since $p_T(\nabla\tilde\varphi_0) = \nabla\tilde\varphi_0$ and $p_T(\nabla\tilde f_i) = \nabla\tilde f_i$ we have
+\begin{align}
+    \nabla^M\tilde f_i \cdot \nabla^M\tilde \varphi_0 &= p_{T_xM}(\nabla\tilde f_i) \cdot \nabla \tilde \varphi_0 \nonumber \\
+    &= \nabla\tilde f_i \cdot \nabla\tilde\varphi_0 - p_{(T_xM)^{\perp}} (\nabla\tilde f_i)\cdot \nabla\tilde\varphi_0 \nonumber\\
+    &= \nabla\tilde f_i \cdot \nabla\tilde\varphi_0 - ( p_T \circ p_{(T_xM)^{\perp}} \circ p_T) (\nabla\tilde f_i)\cdot \nabla\tilde\varphi_0\label{eq: te10}
+\end{align}
+where we used that $p_{S^{\perp}}=\Id(x) - p_S$ for all subspaces $S \subseteq \R^n$.
+
+It can be shown that the operator norm and the inner product norm are equivalent, in fact $\Vert p_S\Vert \le |p_S|$ (see \cite{simon2014introduction}), which shows that
+\begin{align}
+    \Vert p_T \circ p_{(T_xM)^{\perp}} \circ p_T \Vert &= \Vert (p_T - p_{T_xM}) \circ p_{(T_xM)^{\perp}} \circ (p_T - p_{T_xM}) \Vert \\
+    &\le \Vert p_T - p_{T_xM} \Vert^2 \\
+    &\le |p_T - p_{T_xM}|^2
+\end{align}
+so \eqref{eq: te10} implies that
+\begin{align}
+    |\nabla^M \tilde f_i \cdot \nabla^M \tilde\varphi_0 - \nabla \tilde f_i \cdot \nabla \tilde \varphi_0| \le |p_T - p_{T_xM}|^2 \sup|\nabla\tilde\varphi_0|.\label{eq: te11}
+\end{align}
+which, together with \eqref{eq: te8} implies that
+\begin{align}
+    \left| \sigma^{-m} \int_{M_1} \nabla\tilde f_i \cdot \nabla\tilde\varphi_0\, d\mu_V\right| \le C\sup|\nabla \varphi_0| (\delta^{1/2}E_0^{1/2} + E_0).
+\end{align}
+We can validly replace $\varphi_0$ with $f_i$ in \eqref{eq: te10} and \eqref{eq: te11} and use \eqref{eq: te9} to see that also
+\begin{align}
+    \sigma^{-m} \int_{M_1 \cap B_{\sigma}(0)} |\nabla \tilde f_i|^2\, d\mu_V \le CE_0.
+\end{align}
+Using the area formula (\cref{thm: area formula}) this implies that
+\[
+    \left| \sigma^{-m} \int_{B_{\sigma}(0)} \nabla f_i \cdot \nabla\varphi_0 \theta \circ F\, J_F\, d\lambda_m \right| \le C\delta^{1/2} E_0^{1/2} \sup|\nabla \varphi_0|,
+\]
+and
+\begin{align}
+    \sigma^{-m} \int_{B_{\sigma}(0)} |\nabla f_i|^2 \theta \circ F\, J_F\, d\lambda_m \le CE_0
+\end{align}
+where $\theta$ is the multiplicity of the varifold $V=V(M,\theta)$, $F:\R^m \to \R^n$ is the graph map of $f$, i.e. $F(x) = (x,f(x))$ and where $J_F$ is the Jacobian of $F$ i.e.
+\[
+    J_F(x) = \sqrt{\det(D_i F(x) \cdot D_j F(x)) } = \sqrt{ \det( \delta_{ij} + D_i f(x) \cdot D_jf(x) ) }.
+\]
+We note that $1 \le J_F \le 1 + C|\nabla f|^2$ on $B_{\sigma}(0)$ and $1 \le \theta \le 1 + C\delta$ which implies that
+\begin{align}
+    \left| \sigma^{-m} \int_{B_{\sigma}(0)} \nabla f_i \cdot \nabla\varphi_0 \, d\lambda_m \right| &\le C\paren{\delta^{1/2}E_0^{1/2} + \delta\sigma^{-m} \int_{B_{\sigma/2}(0)} |\nabla f_i| \, d\lambda_m }\sup|\nabla\varphi_0| \nonumber\\
+    &\le C\delta^{1/2}E_0^{1/2} \sup|\nabla\varphi_0|\label{eq: te15}
+\end{align}
+and
+\begin{align}
+    \sigma^{-m}\int_{B_{\sigma}(0)} |\nabla f_i|^2\, d\lambda_m \le CE_0. \label{eq: te16}
+\end{align}
+We can now use the Harmonic approximation \cref{lem: harmonic approximation} along with \eqref{eq: te15} and \eqref{eq: te16} but replacing $f$ with $(CE_0)^{-1/2}f_i$ to see that for any $\varepsilon \in (0,1)$ there is some $\delta_0 = \delta_0(m)$ such that if the assumptions in the Harmonic approximation \cref{lem: harmonic approximation} holds with $\delta \le \delta_0$, then there exists $\ell$ harmonic functions $u_1, \dots, u_{\ell}$ on $B_{\sigma/2}(0)$ such that
+\begin{align}
+    \sigma^{-m} \int_{B_{\sigma/2}(0)} |Du|^2 \, d\lambda_m \le CE_0,\label{eq: te171}
+\end{align}
+and
+\begin{align}
+    \sigma^{-m-2} \int_{B_{\sigma/2}(0)} |f-u|^2 \, d\lambda_m \le \varepsilon E_0.\label{eq: te172}
+\end{align}
+Since $\sup|f| \le C\delta^{1/(2m+2)}\sigma$ we see that $|u(x)| \le |u(x)-f(x)| + C\delta^{1/(2m+2)}$ and hence
+\[
+    \int_{B_{\sigma/2}(0)} |u|^2\, d\lambda_m \le 2\int_{B_{\sigma/2}(0)} |u-f|^2\, d\lambda_m + C\delta^{1/(m+1)}E_0.
+\]
+Furthermore, \eqref{eq: harmapproxaside} and \eqref{eq: te171} and \eqref{eq: te172} implies that
+\begin{equation}
+    \left.\begin{aligned}
+        \sigma^{-1}|u(0)| &\le C(\varepsilon^{1/2}E_0^{1/2} + \delta^{1/(2m+2)}) \le C\delta^{1/(2m+2)}\label{eq: te18} \\
+        |Du(0)| &\le CE_0^{1/2}.
+    \end{aligned}\right\}
+\end{equation}
+We now define $L(x)=(L_1(x), \dots, L_{\ell}(x))$ such that the $i$'th entry is the affine approximation to $u_i$, that is $L_i(x)=u_i(x) + x\cdot \nabla u_i(0)$ for $i = 1, \dots, \ell$. So then, using \eqref{eq: harmapproxaside} with $\eta \in (0,1/4)$ we get
+\begin{align}
+    (\eta\sigma)^{-m-2} \int_{B_{\eta\sigma}(0)} |f-L|^2\, d\lambda_m &\le 2(\eta\sigma)^{-m-2} \int_{B_{\eta\sigma}(0)} (|f-u|^2 + |u-L|^2)\, d\lambda_m \nonumber \\
+    &\le 2\eta^{-m-2}\varepsilon E_0 + 2\omega_m(\eta\sigma)^{-2}\sup_{B_{\eta\sigma}(0)} |u-L|^2 \nonumber\\
+    &\le 2\eta^{-m-2}\varepsilon E_0 + C\eta^2\sigma^{-m} \int_{B_{\sigma}(0)} |Du|^2\, d\lambda_m \nonumber\\
+    &\le 2\eta^{-m-2}\varepsilon E_0 + C\eta^2E_0.\label{eq: te19}
+\end{align}
+Now, define $S$ as the $m$-dimensional subspace $S=\Graph(L-L(0)) = (x,L(x)-L(0))$ and let $\tau=(0,L(0))$. We then note that $|\tau| \le C\delta^{1/(2m+2)}\sigma$ by the above. Thus $\Dist(x,\tau+S) \le |f(x') - L(x')|$ for all $x = (x',f(x')) \in B_{\eta\sigma}(\tau) \cap \Graph f$ hence \eqref{eq: te19} implies that
+\[
+    (\eta\sigma)^{-m-2} \int_{ B_{\eta\sigma}(\tau) \cap \Graph f } \Dist(x - \tau, S)^2\, d\Haus^m \le C\eta^{-m-2} \varepsilon E_0 + C\eta^2E_0.
+\]
+and then \eqref{eq: te18} and the first paragraph of this proof shows that 
+\[
+    (\eta\sigma)^{-m-2} \int_{B_{\eta\sigma}(\tau)}\Dist(x-\tau,S)^2\, d\mu_V \le C\eta^{-m-2}\varepsilon E_0 + C\delta^{1/(m+1)}E_0 + C\eta^2E_0,
+\]
+where we used that $\theta(\xi) \le 1 + C\delta \le 2$ in $B_{\sigma}(0)$. We can then use Hölder on the tilt-excess and get that
+\begin{align}
+    E(\tau, \frac{\eta\sigma}{2},S) \le C\eta^{-m-2}\varepsilon E_0 + C\delta^{1/(m+1)}E_0 + C(\eta^2 + \delta)E_0.\label{eq: te20}
+\end{align}
+and hence using that $|\tau|\le C\delta^{1/(2m+2)}\sigma$ yields that whenever $C\delta^{1/(2m+2)} < \eta/4$ we have $B_{\eta\sigma/4}(0) \subseteq B_{\eta\sigma/2}(\tau)$ whenever $\delta=\delta(m,\ell,p)$ is small enough. and then \eqref{eq: te20} shows that
+\begin{align}
+    E(0,\frac{\eta\sigma}{4},S) \le C\eta^{-m-2}\paren{\varepsilon + \delta^{1/(2m+2)}}E_0 + C(\eta^2 + \delta)E_0.\label{eq: te22}
+\end{align}
+Finally, select $C$ from \eqref{eq: te22}, choose $\eta=\eta(m,\ell,p)$ such that $C\eta^2 \le \frac{1}{4}\paren{\frac{\eta}{4}}^{2(1-m/p)}$, then choose $\varepsilon = \varepsilon(m,\ell,p)$ such that $C\eta^{-m-2}\varepsilon \le \frac{1}{4}\paren{\frac{\eta}{4}}^{2(1-m/p)}$, and finally, choose $\delta_0=\delta_0(m,\ell,p)$ small enough such that $B_{\eta\sigma/4}(0) \subseteq B_{\eta\sigma/2}(\tau)$ as above, and such that the harmonic approximation above holds true with the just chosen $\varepsilon$ and such that $C\eta^{-m-2}\delta^{1/(2m+2)} \le \frac{1}{4}\paren{\frac{\eta}{4}}^{2(1-m/p)}$, and then select some $\delta \le \delta_0$.
+
+Coming to the conclusion, \eqref{eq: te22} implies that
+\begin{align}
+    E(0,\frac{\eta\sigma}{4},S) \le \paren{\frac{\eta}{4}}^{2(1-m/p)}E_0,
+\end{align}
+and then, since
+\[
+    \paren{ \paren{\frac{\eta\sigma}{4}}^{p-m} \int_{ B_{\eta\sigma/4}(0) } |H|^p \, d\mu_V }^{1/p} \le \paren{\frac{\eta}{4}}^{1-m/p} \paren{ \paren{\sigma}^{p-m} \int_{ B_{\eta\sigma/4}(0) } |H|^p \, d\mu_V }^{1/p}
+\]
+we can now finally conclude, since $B_{\eta\sigma/4}(0) \subseteq B_{\sigma}(0)$, that
+\[
+    E_*(0,\frac{\eta\sigma}{4},S) \le \paren{\frac{\eta}{4}}^{2(1-m/p)}E_*(0,\sigma,T)
+\]
+which completes the proof with $\eta/4$ in place of $\eta$.
+\end{proof}
+
+Notice that we trivially have, for any $S$ that satisfies the statement in the Tilt-excess decay theorem, 
+\[
+    (\eta\sigma)^{-m} \int_{B_{\eta\sigma}(\xi)}|p_{T_xM} - p_T|^2\, d\mu_V \le \eta^{-m}E(\xi, \sigma, T),
+\]
+and the Tilt-excess decay \cref{thm: tilt-excess decay theorem} implies that
+\[
+    (\eta\sigma)^{-m} \int_{B_{\eta\sigma}(\xi)}|p_{T_xM} - p_S|^2\, d\mu_V \le E_*(\xi, \sigma, T),
+\]
+So since $|p_S-p_T|^2 \le 2|p_{T_xM}-p_T| + 2|p_{T_xM} - p_S|^2$, and since $\mu_V(B_{\eta\sigma}(\xi))\ge \frac{1}{2}(\omega\eta\sigma)^m$ we have
+\begin{equation}
+    |p_S-p_T|^2 \le C \eta^{-m} E_*(\xi, \sigma, T) \label{eq: remark 4.6}
+\end{equation}
+
+
+\section{Allard's Regularity Theorem}
+Recall that the Hölder space $C^{k,\alpha}(U,\R^N)$ for $k \in \N$, $\alpha \in (0,1]$ and some open set $U \subseteq \R^M$, is the space of functions $f \in C^k(U, \R^N)$ for which $|D^kf(x)-D^k(y)| \le C(|x-y|)^{\alpha}$.
+
+We are now ready to prove the main theorem of this thesis. It says that under some regularity conditions, then inside some small ball the support of a varifold $V$ is a Hölder continuous $m$-dimensional manifold.
+
+\begin{theorem}[Allard's Regularity Theorem]\label{thm: allard}
+For any $p > m$ there is some $\delta_0 = \delta_0(m, \ell, p),\gamma=\gamma(m, \ell, p) \in (0,1)$ such that if $(\dagger)$ holds with $\delta \le \delta_0$ then there exists some linear isometry $q:\R^n \to \R$ and some $u=(u_1, \dots, u_{\ell}) \in C^{1,1-m/p}(B_{\gamma\rho}^m(0), \R^{\ell})$ such that $Du(0)=0$, $\Supp V \cap B_{\gamma\rho}(0)=q(\Graph u) \cap B_{\gamma\rho}(0)$ and such that
+\[
+    \rho^{-1}\sup|u| + \sup|Du| + \rho^{1-m/p}\sup_{x,y \in B^m_{\gamma\rho}(0), x\neq y} \frac{|Du(x)-Du(y)|}{|x-y|^{1-m/p}} \le C\delta^{1/(2m+2)}
+\]
+for some $C=C(m, \ell, p)$
+\end{theorem}
+\begin{proof}
+We will prove a slight improvement of the theorem, that is, for every $\gamma \in (0,1)$ there is some $\delta=\delta(\gamma, m, \ell, p) \in (0,1)$ such that $(\dagger)$ implies the theorems conclusion.
+
+So let $C=C(m, \ell, p) > 0$ be arbitrary. Take some $\xi \in B_{\delta\rho/2}(0) \cap \Supp V$ and $\sigma \in (0, \delta\rho/2]$ and some $m$-dimensional subspace $S_0 \subseteq \R^n$. We know from the Tilt-Excess Decay \cref{thm: tilt-excess decay theorem} that there exists $\delta = \delta(m, \ell, p)$ and $\eta=\eta(m, \ell, p)$ such that $(\dagger)$ implies the existence of some $m$-dimensional subspace $S_1 \subseteq \R^n$ for which
+\[
+    E_*(\xi, \eta\sigma, S_1) \le \eta^{2(1-m/p)}E_*(\xi, \sigma, S_0).
+\]
+In fact, we can do this inductively, and see that for $\xi \in \Supp V \cap B_{\delta\rho/2}(0)$ and $\sigma_0 = \delta\rho/2$ there exists some sequence $S_1, S_2, \dots \subseteq \R^n$ of $m$-dimensional subspaces such that
+\begin{equation}
+    E_*(\xi, \eta^i\sigma_0, S_i) \le \eta^{2(1-m/p)}E_*(\xi, \eta^{i-1}\rho/2, S_{i-1}) \le \eta^{2i(1-m/p)}E_*(\xi, \sigma_0, S_0)\label{eq: allard1}
+\end{equation}
+for all $i = 1, 2, \dots$.
+
+Now, with $T_0 = T(0,2\sigma_0)$ the Affine Approximation \cref{lem: affine approximation lemma} implies that $E(0,\sigma_0, T_0) \le C\delta^{1/(m+1)}$ and for all $\xi \in \Supp V \cap B_{\sigma_0/2}(0)$ that $E(\xi, \sigma_0/2, T_0) \le 2^m C \delta^{1/(m+1)}$ with the same $C$. So taking $S_0 = T_0$ in \eqref{eq: allard1} we get that
+\[
+    E_*(\xi, \eta^i\sigma_0, S_i) \le \eta^{2(1-m/p)}E_*(\xi, \eta^{i-1}\sigma_0/2, S_{i-1}) \le \eta^{2i(1-m/p)}E_0
+\]
+for every $\xi \in \Supp V \cap B_{\sigma_0/2}(0)$ where $E_0 = E_*(0, \sigma_0, T_0)$. We can then employ \eqref{eq: remark 4.6} to see that
+\begin{equation}
+    |p_{S_i} - p_{S_{i-1}}|^2 \le CE_*(\xi, \eta^{i-1}\sigma_0, S_{i-1}) \le C \eta^{2i(1-m/p)}E_*(\xi, \sigma_0, S_0),\label{eq: allard3}
+\end{equation}
+for all $i \ge 1$. Let us now consider $|p_{S_{\ell}}-p_{S_i}|$, which by \eqref{eq: allard3} can be bounded as follows
+\begin{align}
+    |p_{S_{\ell}}-p_{S_i}|^2 &= \left| \sum_{j=i+1}^{\ell} p_j - p_{j-1} \right|^2 \nonumber \\
+    &\le \sum_{j=i+1}^{\ell} |p_j - p_{j-1}|^2 \nonumber \\
+    &\le C \eta^{2i(1-m/p)}E_0
+\end{align}
+for every $\ell \ge i \ge 0$. This implies that for every $\xi$ there is some $S(\xi)$ realised as $S(\xi) = \lim_{\ell \to \infty}S_{\ell}$ such that
+\begin{equation}
+    |p_{S(\xi)} - p_{S_i}|^2 \le C \eta^{2i(1-m/p)}E_0 \label{eq: allard5}
+\end{equation}
+and nota that with $i=0$ we get
+\begin{equation}
+    |p_{S(\xi)} - p_{T_0}|^2 \le C E_0. \label{eq: allard6}
+\end{equation}
+Now, that was for $\sigma_0 = \delta\rho/2$. So if $\sigma \in (0, \sigma_0/2]$ is arbitrary, we can find some $i \ge 0$ for which $\eta^i\sigma_0/2 < \sigma \le \eta^{i-1}\sigma_0/2$, and then \eqref{eq: allard1} and \eqref{eq: allard5} implies that
+\begin{equation}
+    E_*(\xi, \sigma, S(\xi)) \le C\paren{\frac{\sigma}{\sigma_0}}^{2(1-m/p)}E_0\label{eq: allard7}
+\end{equation}
+for all $\xi \in \Supp V \cap B_{\sigma_0/2}(0)$. In addition, \eqref{eq: allard6} and \eqref{eq: allard7} imply that
+\begin{equation}
+    E_*(\xi, \sigma, T_0) \le CE_0 \le C \delta^{1/(2m+2)}. \label{eq: allard8}
+\end{equation}
+We can assume without loss of generality that $T_0 = \R^m \times \{0\}$, and then \cref{cor: lipschitz corollary} and \eqref{eq: allard8} implies that if $L_0 \in (0,1/4]$ and if $\delta \le \delta_0 L_0^{2m+2}$ for some small enough $\delta_0 = \delta_0(m, \ell, p)$ then there exists some Lipschitz mapping $f:B^m_{\sigma_0/2}(0) \to \R^{\ell}$ with $\Lip f \le L_0$ such that
+\begin{equation}
+    \Supp V \cap B_{\sigma_0/4}(0) = \Graph f \cap B_{\sigma_0/4}(0).\label{eq: allard9}
+\end{equation}
+Now, define $F = \Graph f$ and let $\xi = (\xi', f(\xi')) \in \Graph f$. Then \eqref{eq: allard7} and \eqref{eq: allard9} implies that
+\[
+    \lim_{\sigma \to 0^+} \sigma^{-m} \int_{B_{\sigma}(\xi) \cap F} |p_{T_x F} - p_{S(\xi)}|^2 \, d\Haus^m = 0
+\]
+for $\Haus^m$-a.e. $\xi \in F \cap B_{\sigma_0/2}(0)$. But by definition, this is exactly what it means for $S(\xi)$ to be the tangent space of $F$ at all such $\xi$, that is $S(\xi)=p_{T_{\xi}F}$. Hence \eqref{eq: allard7} can be rewritten as
+\begin{equation}
+    \sigma^{-m} \int_{B_{\sigma}(\xi) \cap F} |p_{T_xF} - p_{T_{\xi}F}|^2 \, d\Haus^m \le C{\paren{\frac{\sigma}{\sigma_0}}}^{2(1-m/p)}E_0. \label{eq: allard10}
+\end{equation}
+Now, we note that $p_{T_{\xi}F}:\R^n \to T_{\xi}F$ is given by
+\[
+    p_{T_{\xi}F}(v) = \sum_{i=1}^m (\tau_i \cdot v) \tau_i
+\]
+where $\tau_1, \dots, \tau_m$ is an orthonormal basis for $T_{\xi}F$. We can then use the Gram-Schmidt orthogonalization process, starting with $(e_i, D_if(\xi'))$ for $i=1, \dots, m$ as the basis for $T_{\xi}F$, which shows that $p_{T_{\xi}F}$ has a corresponding matrix of the form
+\[
+    P_{\xi} = \begin{pmatrix}
+        I_{m \times m} & Df(\xi') \\
+        (Df(\xi'))^t   & O_{\ell \times \ell}
+    \end{pmatrix} + \F(Df(\xi))
+\]
+where $I_{m \times m}$ is the identity matrix, $O_{\ell \times \ell}$ is the zero-matrix, and where $\F:\R^{m}\times \R^{\ell}\to \R$ is a real analytical function with $\F(0)=0$, $D_p\F(0)=0$ and therefore $|\F(p_1) - \F(p_2)| \le C(m, \ell)(|p_1| + |p_2|)|p_1-p_2|$ whenever $|p_1|,|p_2| \le 1$. So choosing $L_0$ small enough, this allows us to see that
+\[
+    |Df(x') - Df(\xi')|^2 \le |p_{T_xF} - p_{T_{\xi}F}|^2 \le 3|Df(x') - Df(\xi')|^2
+\]
+and then \eqref{eq: allard10} implies that
+\[
+    \sigma^{-m} \int_{B^m_{\sigma}(\xi')} |Df(x) - Df(\xi)|^2\, d\lambda_m(x) \le C\paren{\frac{\sigma}{\sigma_0}}^{2(1-m/p)}E_0
+\]
+whenever $\sigma \in (0, \sigma_0/4)$. Now for $\mu_V$-a.e. $x_1,x_2 \in \Supp V \cap B_{\sigma_0/8}(0)$ we can use this inequality with $\sigma = |x_1 - x_2|$ and with $\xi = x_1,x_2$ respectively. Then since $|Df(x_1) - Df(x_2)|^2 \le 2|Df(x) - Df(x_1)|^2 + 2|Df(x) - Df(x_2)|^2$ for every $x \in B^m_{\sigma}(x_1) \cap B^m_{\sigma}(x_2)$ and since $B^m_{\sigma}(x_1) \cap B^m_{\sigma}(x_2) \supseteq B^m_{\sigma/2}(\frac{x_1+x_2}{2})$ we see that
+\[
+    |Df(x_1) - Df(x_2)| \le C\paren{\frac{|x_1 - x_2|}{\sigma_0}}^{1-m/p}E_0^{1/2}
+\]
+for $\lambda_m$-a.e. $x_1,x_2 \in B^m_{\sigma_0/4}(0)$. Finally, we see that since $f$ is Lipschitz, then the above inequality shows that $f \in C^{1,1-m/p}$ for every $x_1,x_2 \in B^m_{\sigma_0/4}(0)$. So choosing $\delta$ small enough to satisfy the restrictions above, the theorem follows when selecting $u=f$ and $\gamma = \delta/4$.
+\end{proof}
+

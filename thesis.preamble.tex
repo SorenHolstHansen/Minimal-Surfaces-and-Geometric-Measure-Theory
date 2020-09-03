@@ -1,0 +1,79 @@
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{latexsym}
+\usepackage{amsthm, amsmath, amssymb, mathtools, bbm}
+\usepackage{setspace}
+\usepackage[toc]{appendix}
+
+\usepackage{todonotes}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{width=7cm,compat=1.8}
+\usepackage{subcaption}
+
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+\input{blocked.sty}
+\input{thesis.sty}
+
+\usepackage{fancyhdr}				
+	\setlength{\headheight}{15.2pt}
+	\pagestyle{fancy}
+	\fancyhf{}
+    \fancyfoot[RE,LO]{\leftmark}
+    \fancyfoot[LE,RO]{\thepage}
+	\fancyhead[LE,RO]{}
+    \fancyhead[RE,LO]{}
+	%\lfoot{}
+	\cfoot{}
+	%\rfoot{}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0.4pt}
+	
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\M}{\mathbb{M}}
+\newcommand{\K}{\mathcal{K}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\sS}{\mathbb{S}}
+\newcommand{\Haus}{\mathcal{H}}
+\newcommand{\pow}[1]{\mathbb{P}(#1)}
+\newcommand{\m}[1]{\mathcal{#1}}
+\newcommand{\paren}[1]{\left(#1\right)}
+\newcommand{\angles}[1]{\left\langle#1\right\rangle}
+
+\DeclareMathOperator{\Gr}{Gr}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Area}{Area}
+\DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\Diam}{diam}
+\DeclareMathOperator{\Dist}{dist}
+\DeclareMathOperator{\Supp}{supp}
+\DeclareMathOperator{\Lip}{Lip}
+\DeclareMathOperator{\Graph}{graph}
+\DeclareMathOperator{\Id}{id}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+
+\numberwithin{equation}{chapter}
+
+\newcommand{\normallinespacing}{\renewcommand{\baselinestretch}{1.5} \normalsize}
+\newcommand{\mediumlinespacing}{\renewcommand{\baselinestretch}{1.2} \normalsize}
+\newcommand{\narrowlinespacing}{\renewcommand{\baselinestretch}{1.0} \normalsize}
+
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\renewenvironment{proof}{{\bfseries Proof.}}{\qed}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+

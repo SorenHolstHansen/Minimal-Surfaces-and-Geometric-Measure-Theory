@@ -1,0 +1,235 @@
+\chapter{Countably $m$-rectifiable sets}
+
+\section{Preliminaries}
+In the introduction we used standard surfaces in 3 dimensions. However we can expand the notion of minimal surfaces, to a broader class than those. First of all, we could consider manifolds as in the following definition. However, we can generalize even further, as we shall see in this chapter.
+
+\begin{definition}\label{def: submanifold}
+Let $r \ge 1$, $m, n \in \N$ with $m<n$. Then $M \subseteq \R^{n}$ is called an $m$-dimensional $C^{\ell}$ submanifold of $\R^{n}$ if for each $y \in M$ there are open sets $V \subseteq \R^{m}$ and $W \subseteq \R^{n}$ with $y \in W$, and a bijective $C^{\ell}$ map $\psi:V \to W$ with
+\begin{align*}
+	\psi(V) = W \cap M
+\end{align*}
+and such that $\psi$ is proper (i.e. if $K \subseteq W$ is compact, then $\psi^{-1}(K)$ is compact in $V$) and $D\psi(x)$ has rank $m$ at each point $x \in V$.
+\end{definition}
+
+Such an $m$-dimensional $C^{\ell}$ submanifold of $\R^{n}$ admits a local graphical representation. Indeed if $\psi:V \to W$ is the local representation for $M$ as in the definition, $y_{0} \in M \cap W$ and $x_{0} = \psi^{-1}(y_{0}) \in V$, then by definition we have that rank $D\psi(x_{0})=m$ hence there are indices $1 \le k_{1} < \dots < k_{n} \le n$ such that $\det(D_{k_{i}}\psi_{j}(x_{0})) \neq 0$. Now if $k_{i}=i$ for all $i = 1, \dots, m$, then letting $\tilde \psi = (\psi_{1}, \dots, \psi_{m})$, the inverse function theorem implies the existence of open sets $V_{0},U \subseteq \R^{m}$ such that $x_{0} \in V_{0} \subseteq V$ and such that $\tilde \psi|_{V_{0}}$ is a $C^{\ell}$ diffeomorphism of $V_{0}$ onto $U$. 
+We now see that $G := \psi \circ (\tilde \psi|_{V_{0}})^{-1}:U \to W$ has the form
+\begin{align*}
+	G(x) = (x,u(x)), \quad x \in U
+\end{align*}
+where $u:U \to \R^{\ell}$ is given by $u=(\psi_{m+1}, \dots, \psi_{n}) \circ (\tilde \psi|_{V_{0}})^{-1}$, i.e. $G$ is the graph map $x \mapsto (x, u(x))$ of $u$, namely $G(U)=\Graph u=\psi(V_{0}) = M \cap W_{0}$.
+
+This remains true without the assumption that $k_{i}=i$ for $i = 1, \dots, m$, because we can just compose with a permutation map such that the coordinates $x_{k_{1}}, \dots, x_{k_{m}}$ are permuted to the first $m$ entries. Thus $M$ is a $C^{\ell}$ submanifold of $\R^{n}$ if and only if $M$ admits a local representation around each of its points as the graph of a $C^{\ell}$ function $u$.
+
+
+
+We state without proof the following theorem
+\begin{theorem}[$C^{1}$ approximation theorem]\label{thm: C1 approximation theorem}
+If $f : \R^{m} \to \R$ is Lipschitz. Then for each $\varepsilon > 0$ there exist a mapping $g \in C^{1}(\R^{m})$ such that
+\begin{align*}
+	\lambda_{m} ( \{ x : f(x) \neq g(x) \} \cup \{ x : \nabla f(x) \neq \nabla g(x) \} ) < \varepsilon.
+\end{align*}
+\end{theorem}
+
+\section{Countably $m$-rectifiable sets}
+\begin{definition}\label{def: rectifiable}
+Let $m,n \in \N$ with $m\le n$. A set $M \subseteq \R^{n}$ is called (countably) $m$-rectifiable if
+\begin{align*}
+	M \subseteq M_{0} \cup \left( \bigcup_{j=1}^{\infty} F_{j}(\R^{m}) \right),
+\end{align*}
+where $\Haus^{n}(M_{0}) = 0$ and $F_{j}: \R^{m} \to \R^{n}$ are Lipschitz mappings.
+\end{definition}
+
+A countably $m$-rectifiable set is an extension of ordinary $m$-dimensional embedded $C^1$ submanifolds of $\R^n$ in the following sense
+\begin{lemma}\label{lem: rectifiable lemma}
+$M$ is countably $m$-rectifiable if and only if $M \subseteq \bigcup_{i=0}^{\infty}N_{j}$ where $\Haus^{m}(N_{0})=0$ and where each $N_{i}$, $i \ge 1$ is an $m$-dimensional embedded $C^{1}$ submanifold of $\R^{n}$.
+\end{lemma}
+\begin{proof}
+First assume that $N$ is an $m$-dimensional $C^{1}$ submanifold. Then using the discussion after \cref{def: submanifold} we see that $N$ has a local graphical representation. This means that for each $x \in N$ there exists a radius $r_{x} > 0$ such that $B_{r_{x}}(x) \cap N = \psi(V)$ for a suitable open set $V \subseteq \R^{m}$ and $C^{1}$ map $\psi:V \to \R^{n}$. All such $C^{1}$ maps are automatically Lipschitz in each closed ball in $V$, so it is clear that $M$ satisfies \cref{def: rectifiable}
+
+the reverse implication is a consequence of the $C^{1}$ approximation \cref{thm: C1 approximation theorem}. Indeed, the theorem states that for each $j=1,2, \dots$ there exists $C^{1}$ functions $G_{1j}, G_{2j}, \dots:\R^{m} \to \R^{n}$ such that if $F_{j}$ are Lipschitz functions as in \cref{def: rectifiable} then $\Haus^{m}(\{ x \mid F_{j}(x) \neq G_{ij}(x)\})<1/i$. Now define
+\begin{align*}
+	Z_{j} := \R^{n} \setminus \paren{ \bigcup_{i=1}^{\infty} \{ x \mid F_{j}(x) = G_{ij}(x) \} },
+\end{align*}
+then $\Haus^{m}(Z_{j})=0$, and
+\begin{align*}
+	\Graph F_{j} \subseteq F_{j}(Z_{j}) \cup \paren{ \bigcup_{i=1}^{\infty} G_{ij}(\R^{n}) }, \quad j=1,2, \dots.
+\end{align*}
+Now the area formula (\cref{thm: area formula}) says that $\Haus^{m}(F_{j}(Z_{j}))=0$ because $F_{j}$ is Lipschitz and $\Haus^{m}(Z_{j})=0$,
+so with $N_{0} := \bigcup_{j=1}^{\infty}E_{j}$, we have $\Haus^{m}(N_{0})=0$, and so we have proved that
+\begin{align*}
+	M \subseteq (M_{0} \cup N_{0}) \cup \paren{ \bigcup_{i,j=1}^{\infty} G_{ij}(\R^{n}) }.
+\end{align*}
+%Check also https://people.math.ethz.ch/~lang/rect_notes.pdf
+Now by the area formula $\Haus^{m}(\{x \mid J_{G_{ij}} = 0 \}) = 0$. So if the Jacobian of $G_{ij}$ is non-zero at a point $x$, then there is an $r > 0$ such that $G_{ij}(\mathring{B}_{r}(x))$ is an $m$-dimensional $C^{1}$ submanifold of $\R^{m}$ (that is $G_{ij}$ provides a local representation in a neighborhood of the point $y = G_{ij}(x)$). So $\bigcup_{ij} G_{ij}$ can be written as the union of a set of measure zero and countably many $m$-dimensional $C^{1}$ submanifolds of $\R^{n}$.
+\end{proof}
+
+In particular, with the $N_i$ from the theorem, we can define $M_0 = M \cap N_0$, and then
+\[
+    M_i = M \cap N_i \setminus \bigcup_{j=0}^{i-1}M_j
+\]
+for $i \ge 1$. Hence we can write $M = \bigcup_i M_i$, where the sets $M_i$ are all $\Haus^m$-measurable and pairwise disjoint.
+
+\begin{definition}
+A set $P \subseteq \R^n$ is called purely $m$-unrectifiable if
+\begin{align*}
+    \Haus^m(P \cap R)=0
+\end{align*}
+for all $m$-rectifiable $R \subseteq \R^n$.
+\end{definition}
+
+\begin{theorem}
+Let $A \subseteq \R^n$ be $\Haus^m$ measurable such that $\Haus^m(A) < \infty$, with $m \in \N$. Then there exists $\Haus^m$-measurable sets $P$ and $R$, such that $P$ is purely $m$-unrectifiable and $R$ is $m$-rectifiable, and such that
+\begin{align*}
+    A = R \cup P, \quad \text{ and }\quad R \cap P = \emptyset
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $M = \sup\{\Haus^m(R) \mid R \subseteq A, R \text{ is } m\text{-rectifiable}\}$. For each $i \in N$ choose an $m$-rectifiable set $R_i$ such that
+\begin{align*}
+    \Haus^m(R_i) > M-1/i.
+\end{align*}
+Letting $R = \bigcup_i R_i$ and $P = A \setminus R$ finishes the proof.
+\end{proof}
+
+\section{Approximate tangent spaces and characterisation of countably $m$-rectifiable sets}
+
+Next, we will describe approximate tangent spaces. These will help us characterise rectifiable sets, and give us some invaluable tools, when we begin to talk about varifolds in the next chapter, and in the theorems of the last chapter.
+
+\begin{definition}
+Let $M$ be an $\Haus^m$-measurable subset of $\R^n$ with $\Haus(M \cap K) < \infty$ for all compact sets $K$. Then we say that an $m$-dimensional vector subspace $V \subseteq \R^n$ is an \textbf{approximate tangent space} of $M$ at $x \in \R^{n}$ if
+\[
+    \lim_{\lambda \to 0} \int_{\eta_{x,\lambda}(M)}f(y)\, d\Haus^m(y) = \int_V f(y) \, d\Haus^m(y)
+\]
+for all $f \in C_c^0(\R^n)$, where $\eta_{x,\lambda}:\R^n \to \R^n$ is defined by $\eta_{x,\lambda}(y)=\lambda^{-1}(y-x)$ for $x,y \in \R^n$ and $\lambda > 0$.
+\end{definition}
+Given some $f \in C_c^0(\R^n)$, $\mu:=\int_Mf(y)\, d\Haus^m(y)$ is a Radon measure on $M$. We say that $\mu$ has approximate tangent space $V$, if the above equality holds.
+
+We see that if $M$ has an approximate tangent space $V$, then it is unique, and we denote it by $T_xM$.
+
+As we mentioned, we can characterise most rectifiable sets by their having approximate tangent spaces.
+
+\begin{theorem}\label{thm: characterization of rectifiable sets}
+If $M$ is $\Haus^m$-measurable and $\Haus^m(M \cap K)<\infty$ for all compact sets $K$, then $M$ is countably $m$-rectifiable if and only if the approximate tangent space $T_xM$ exists for $\Haus^m$-a.e. $x \in M$.
+\end{theorem}
+\begin{proof}
+We will only prove $"\Rightarrow"$.
+By \cref{lem: rectifiable lemma} and the remark afterwards, we can find a disjoint cover of $\Haus^m$-measurable sets $M = \bigcup_i M_i$ such that $\Haus^m(M_0)=0$ and $M_i \subseteq N_i$, $i \ge 1$ where $N_i$ are embedded $C^1$ submanifolds of dimension $m$.
+
+Now with $r > 0$ and $f \in C_c^0(\R^n)$ where $f \equiv 0$ in $\R^n \setminus B_r(0)$ we have
+\[
+    \int_{\eta_{x,\lambda}(M)}f \, d\Haus^m = \int_{\eta_{x,\lambda}(N_i)}f \, d\Haus^m - \int_{\eta_{x,\lambda}(N_i \setminus M_i)}f \, d\Haus^m + \int_{\eta_{x,\lambda}(M \setminus M_i)}f \, d\Haus^m
+\]
+for all $x \in M_i$, and since $x \in M_i \subseteq N_i$ and $N_i$ is a $C^1$ submanifold
+\[
+    \lim_{\lambda \to 0} \int_{\eta_{x,\lambda}(N_i)}f \, d\Haus^m = \int_{T_xN_i} f\, d\Haus^m.
+\]
+Hence by the upper density \cref{thm: upper density theorem}
+\begin{align*}
+    \left\vert \int_{\eta_{x,\lambda}(M\setminus N_i)}f \, d\Haus^m \right\vert &\le \sup |f|\Haus^m(B_r(0) \cap \eta_{x,\lambda}(M \setminus N_i)) \\
+    &= \sup |f|\lambda^{-m}\Haus^m(B_{\lambda r}(x) \cap M \setminus N_i) \to 0
+\end{align*}
+for $\Haus^m$-a.e. $x \in M_i$. The upper density theorem also gives us that
+\[
+    \left\vert \int_{\eta_{x,\lambda}(N_i\setminus M_i)}f \, d\Haus^m \right\vert \to 0
+\]
+for $\Haus^m$-a.e. $x \in M_i$. Hence we have shown that $T_xM$ exists and is equal to $T_xN_i$ for $\Haus^m$-a.e. $x \in M_i$.
+\end{proof}
+
+We relax the conditions in the previous definition of approximate tangent space, and arrive at the following definition
+
+\begin{definition}
+Let $M \subseteq \R^n$ be $\Haus^m$-measurable and let $\theta$ be a positive $\Haus^m$-measurable function on $M$ with $\int_{M \cap K}\theta \, d\Haus^m < \infty$ for all compact sets $K \subseteq R^n$. Then for each $x \in \R^n$ we say that an $m$-dimensional vector subspace $V \subseteq \R^n$ is an approximate tangent space of $M$ with respect to the multiplicity $\theta$ if
+\[
+    \lim_{\lambda \to 0} \int_{\eta_{x,\lambda}(M)}f(y)\theta(x+\lambda y)\, d\Haus^m(y) = \theta(x)\int_{V_x} f(y) \, d\Haus^m(y)
+\]
+for each $f \in C_c^0(\R^n)$. Again, if $V$ exists, it is unique, and so we denote it by $T_xM$, which also agrees with our previous definition of the approximate tangent space in case $\Haus^m(M \cap K) < \infty$ for all compact $K \subseteq \R^n$ and $\theta \equiv 1$.
+\end{definition}
+
+We can then characterise rectifiable $m$-varifolds anew. To do that, we will first need Lusin's theorem.
+
+\begin{theorem}[Lusin's Theorem]\label{thm: lusin}
+Let $\mu$ be a Borel regular outer measure on a metric space $X$, let $A \subseteq X$ be $\mu$-measurable with $\mu(A) < \infty$ and let $f:A \to \R$ be $\mu$-measurable. Then for each $\varepsilon > 0$ there is a closed set $C \subseteq A$, such that $\mu(A \setminus C) < \varepsilon$ and $f|_C$ is continuous
+\end{theorem}
+\begin{proof}
+For every $i \in \N$ and $j \in \Z$ let
+\[
+    A_{ij} = f^{-1}\left[ \frac{j-1}{i}, \frac{j}{i} \right)
+\]
+and note that for a given $i$, $A_{ij}$ are pairwise disjoint, when ranging over $j \in \Z$, and $\bigcup_{j \in \Z} A_{ij} = A$ for every $i \in \N$.
+
+Now, since $A$ is $\mu$-measurable and $\mu$ is Borel regular, then $\mu\llcorner A$ is Borel regular as well, and since $A$ is finite, $\mu \llcorner A$ is in fact a Radon measure. So for each $\varepsilon > 0$ there exist closed sets $C_{ij} \subseteq A_{ij}$ such that
+\[
+    \mu(A_{ij} \setminus C_{ij}) = (\mu \llcorner A)(A_{ij} \setminus C_{ij}) < 2^{-i-|j|-2}\varepsilon.
+\]
+This implies that
+\[
+    \mu\paren{A_{ij} \setminus \bigcup_{\ell \in \Z} C_{i\ell}} < 2^{-i-|j|-2}\varepsilon,
+\]
+which in turn implies that
+\[
+    \mu\paren{A \setminus \bigcup_{j \in \Z} C_{ij}} < 2^{-i}\varepsilon.
+\]
+So for each $i \in \N$ we can find some corresponding integer $j(i)$ such that
+\[
+    \mu\paren{A \setminus \bigcup_{|j| \le j(i)} C_{ij} } < 2^{-i}\varepsilon.
+\]
+Now, if we let $C = \paren{ \bigcap_{i \in \N} \paren{ \bigcup_{|j| \le j(i)} C_{ij} } }$ (which is a closed set) then  we see that $A \setminus C = \bigcup_{i \in \N} (A \setminus \bigcup_{|j| \le j(i)} C_{ij})$ which implies that $\mu(A \setminus C) < \varepsilon$.
+
+Now, for every $i \in \N$ we define $g_i:\bigcup_{|j| \le j(i)}C_{ij} \to \R$ by $g_i(x) = \frac{j-1}{i}$ on $C_{ij}$ where $|j| \le j(i)$. But then since $C_{i1}, \dots, C_{ij(i)}$ are pairwise disjoint closed sets, $g_i$ is continuous and its restriction to $C$ is continuous as well for every $i \in \N$. Finally, by construction $0 \le f(x) - g_i(x) \le 1/i$ for every $x \in C$ and $i \in \N$, hence $g_i|_C$ converges uniformly to $f|_C$ on $C$ and hence $f|_C$ is continuous.
+\end{proof}
+
+\begin{theorem}\label{thm: characterization of rectifiable sets 2}
+If $M \subseteq \R^n$ is $\Haus^m$-measurable and $\theta$ is a positive $\Haus^m$-measurable function on $M$ with $\int_{M \cap K} \theta\, d\Haus^m < \infty$ for all compact sets $K \subseteq \R^n$, then $M$ is countably $m$-rectifiable if and only if $M$ has an approximate tangent space $T_xM$ with respect to $\theta$ for $\Haus^m$-a.e. $x \in M$.
+\end{theorem}
+\begin{proof}
+By Lusin's \cref{thm: lusin}, we can find an increasing sequence $\{M_i\}_{i \in \N}$ of compact subsets of $M$ such that
+\[
+    \Haus^m\paren{M \setminus \bigcup_{i=1}^{\infty} M_i} = 0
+\]
+and such that $\theta|_{M_i}$ is continuous. This implies that $\theta|_{M_i}$ has a positive lower bound, and therefore $\Haus^m(M_i) < \infty$ for all $i \in \N$. So we can use \cref{thm: characterization of rectifiable sets} to see that the sets $M_i$ are countably $m$-rectifiable if and only if the approximate tangent space $T_xM_i$ exists for $\Haus^m$-a.e. $x \in M_i$. This finishes the proof.
+\end{proof}
+
+If $M$ is countable $m$-rectifiable, it can be covered by countably many $m$-dimensional $C^1$ submanifolds (as in the remark after \cref{lem: rectifiable lemma}), say $M_i$, $i=1,2, \dots$. The above proof then shows that for $\Haus^m$-a.e. $x \in M \cap M_i$, $T_xM$ is equal to the usual tangent space of $M_i$.
+
+This also implies that if $A \subseteq B \subseteq \R^m$ are $\Haus^m$-measurable with finite measure, then for $\Haus^m$-a.e. $x \in A$, $T_xA$ exists if and only if $T_xB$ exists. And if they exist, they are equal $\Haus^m$-a.e.
+
+\begin{corollary}
+Let $P \subseteq \R^n$ be $\Haus^m$ measurable with $\Haus^m(P)<\infty$. Then $P$ is purely $m$-unrectifiable if and only if the set of points $x \in P$ for which $T_x^mP$ exists has $\Haus^m$-measure zero.
+\end{corollary}
+
+If $M\subseteq \R^n$ is countably $m$-rectifiable then given a Lipschitz mapping $f:\R^n \to \R$, \cref{thm: characterization of rectifiable sets} allows us to define the gradient $\nabla^Mf$ at $\Haus^m$-a.e. $x \in M$ by
+\begin{align*}
+    \nabla^Mf(x)=\sum_{i=1}^m \partial_{v_i}f(x)v_i
+\end{align*}
+where $(v_1, \dots,v_m)$ is an orthonormal basis of $T_x^mM$ and $\partial_{v_i}f(x)$ denotes the directional derivatives of $f$ in direction $v_i$.
+
+By \cref{lem: rectifiable lemma} we can write $M=M_0 \cup \bigcup_{i=1}^{\infty}M_i$ for $C^1$ submanifolds $M_i$, $i > 0$. Indeed we can even ensure that the unions are pairwise disjoint, by letting $N_0=M_0$, and then $N_j=M_j \setminus \bigcup_{i=0}^{j-1}M_i$. Then $N_i \subseteq M_i$ and
+\begin{align*}
+    M=N_0 \sqcup \bigsqcup_{i=1}^{\infty}N_i.
+\end{align*}
+This implies $\nabla^Mf(x)=\nabla^{N_i}f(x)$ when $x \in N_i$ and $f|_{M_i}$ is differentiable at $x$, which, by Rademachers theorem holds for $\Haus^m$-a.e. $x \in M_i$. We can thus define the linear map $d^Mf_x:T_x^mM \to \R$ by
+\begin{align*}
+    d^Mf_x(v) = \angles{v,\nabla^Mf(x)}
+\end{align*}
+for $v \in T_x^mM$, at all points where $T_x^mM$ and $\nabla^Mf(x)$ exists. If now $f=(f_1, \dots, f_{\ell}):\R^n \to \R^{\ell}$ is Lipschitz, we can similarly define the linear map $d^Mf_x:T_x^mM \to \R^{\ell}$ by
+\begin{align*}
+    d^Mf_x(v) = \sum_{i=1}^{\ell} \angles{v, \nabla^Mf_j(x)}e_j
+\end{align*}
+where $(e_1, \dots, e_{\ell})$ is the standard basis for $\R^{\ell}$. If $\ell \ge m$, we define the Jacobian, $J_f^M(x)$ of $f$ for $\Haus^m$-a.e. $x \in M$ by
+\begin{align*}
+    J^M_f(x) = \sqrt{\det((d^Mf_x)^* \circ (d^Mf_x))}.
+\end{align*}
+In this setting, the area formula also holds, namely
+\begin{align*}
+    \int_A J_f^M(x) \, d\Haus^m = \int_{\R^{\ell}} \Haus^0(A \cap f^{-1}(y)) \, d\Haus^m(y)
+\end{align*}
+for every $\Haus^m$-measurable $A \subseteq M$. And similarly for $\ell<m$  we define
+\begin{align*}
+    J^M_f(x) = \sqrt{\det((d^Mf_x) \circ (d^Mf_x)^*)}.
+\end{align*}
+and the co-area formula holds, namely
+\begin{align*}
+    \int_A J_f^M(x) \, d\Haus^m(x) = \int_{\R^{\ell}} \Haus^{m-\ell}(A \cap f^{-1}(y)) \, d\Haus^{\ell}(y)
+\end{align*}
+for every $\Haus^m$-measurable set $A$.
+

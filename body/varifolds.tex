@@ -1,0 +1,291 @@
+
+\chapter{Varifolds}
+We will now study varifolds, which can be thought of as a measure theoretic generalization of differentiable manifolds.
+
+\begin{definition}
+Let $U\subseteq \R^n$ be open, and let $M,M'$ be $\Haus^{m}$-measurable and countably m-rectifiable subsets of $U$ and let $\theta:M \to [0, \infty)$, $\theta':M' \to [0,\infty)$ be non-negative and locally $\Haus^{m}$-integrable in $M,M'$ respectively (i.e. $\theta, \theta'$ is integrable on every compact subset of $M,M'$ respectively). We say that $(M, \theta)$ and $(M', \theta')$ are equivalent if
+\begin{align*}
+	\Haus^{n}((M \setminus M') \cup (M' \setminus M))=0
+\end{align*}
+and $\theta = \theta'$ $\Haus^{m}$-a.e. in $M \cap M'$. Then a (countably) \textbf{rectifiable $m$-varifold} in $U$ denoted by $V=V(M, \theta)$ is the equivalence class of the pair $(M, \theta)$ as above, and the pair is called a representative for $V$. If $\theta$ is integer-valued, $V(M, \theta)$ is called an integer (multiplicity rectifiable) $m$-varifold.
+\end{definition}
+
+For simplicity, we adopt the convention that $\theta \equiv 0$ on $\R^{n} \setminus M$.
+
+To every rectifiable $m$-varifold $V=V(M, \theta)$ in an open set $U \subseteq \R^n$ we can associate a Radon measure $\mu_{V}$, called the \textbf{weight measure} of $V$, given by
+\begin{align*}
+	\mu_{V}(A) = \Haus^{m}\llcorner \theta(A) := \int_{A \cap M} \theta \, d\Haus^{m}
+\end{align*}
+for every $\Haus^{m}$-measurable set $A \subseteq U$. The weight (or mass), $\M_{V}$ of $V$ is then defined by
+\begin{align*}
+	\M_{V}=\mu_{V}(U).
+\end{align*}
+Furthermore, if $V=V(M, \theta)$ is a rectifiable $m$-varifold, and $x \in \R^{n}$ then we define
+\begin{align*}
+	T_{x}V=T_{x}M
+\end{align*}
+whenever $T_{x}M$ exists. Notice, that this definition is independent of the choice of representative of the rectifiable $m$-varifold. Lastly, for $V=V(M, \theta)$ we define
+\[
+    \Supp V = \Supp \mu_V.
+\]
+
+
+\section{First and second variation formulae}
+We want to study how the mass $\M_V$ of a varifold is affected when it is perturbed by a diffeomorphism, similar to the 3 dimensional. Ultimately we are seeking the varifolds which are critical under such perturbations, called stationary varifolds. It will turn out that we can relate the rate change of the mass of a varifold to the mean curvature. It will be these stationary varifolds that we can think of as "minimal surfaces".
+
+Consider first, for simplicity sake, the case when $M$ is an $m$-dimensional $C^1$ submanifold of $\R^n$. Let $U \subseteq \R^n$ be open such that $U \cap M \neq \emptyset$ and such that $\Haus^m(K \cap M)<\infty$ for every compact subset $K \subseteq U$.
+
+Now let $\{\phi_t\}_{t \in (-1,1)}$ be a 1-parameter family of diffeomorphisms with $\phi_t:U \to U$ with the following properties 
+\begin{align}
+     &\phi:(-1,1) \times U \to U \text { given by } \phi(t,x) = \phi_t(x) \text{ is } C^2,\\
+    &\phi_0(x)=x, \text { for all } x \in U, \text{ and} \label{eq: C2 diff}\\
+    &\phi_t(x) = x, \text{ for all } x \in U \setminus K \text{ and } t\in (-1,1),
+\end{align}
+for some compact subset $K\subseteq U$. Then we define the initial velocity and acceleration vectors for $\phi_t$, $X=(X^1, \dots, X^n):U \to \R^n$ and $Z=(Z^1, \dots, Z^n):U \to \R^n$ respectively, by
+\begin{align}
+    X(x) = \frac{\partial \phi(t,x)}{\partial t}|_{t=0}, \quad \text{and} \quad Z(x) = \frac{\partial^2 \phi(t,x)}{\partial^2 t}|_{t=0} \label{eq: x and z}.
+\end{align}
+Then
+\begin{align}
+    \phi_t(x) = x + tX(x) + \frac{t^2}{2}Z(x) + O(t^3)\label{eq: taylor}
+\end{align}
+where $O(t^3) \in \R^n$ is such that for some $c > 0$, $|O(t^3)| \le c|t^3|$ for all $t \in (-1,1)$. Since $\phi_t(x)=x$ for all $x \in U\setminus K$ and $t \in (-1,1)$ this means that $X(x)$ and $Z(x)$ are compactly supported on a subset of $K$.
+
+With $K$ as before, let $M_t=\phi_t(M\cap K)$. Then $M_t$ is a 1-parameter family of manifolds such that $M_0=M \cap K$ and $M_t$ agrees with $M$ outside some compact subset of $U$. The first and second variation of $M$ are then defined respectively by
+\begin{align*}
+    \frac{d}{dt}\Haus^m(M_t)|_{t=0}, \quad \text{and} \quad \frac{d^2}{dt^2}\Haus^m(M_t)|_{t=0}.
+\end{align*}
+With $K$ as before we can benefit from the area formula which yields
+\begin{align*}
+    \Haus^m(M_t)=\Haus^m(\phi_t(M \cap K))=\int_{M \cap K} J_{\psi_t}\, d\Haus^m
+\end{align*}
+where $\psi_t=\phi_t|_{M \cap U}$. To compute the first and second variation, we can switch the order of integration and differentiation, and the computation is reduced to calculating
+\begin{align*}
+    \frac{\partial}{\partial t}J_{\psi_t}|_{t=0}, \quad \text{and} \quad \frac{\partial^2}{\partial t^2}J_{\psi_t}|_{t=0}.
+\end{align*}
+So let us do that short computation. We fix two orthonormal bases: $\tau_1, \dots, \tau_m$ of $T_xM$ for $x \in M$ and $e_1, \dots, e_n$ of $\R^n$. Then with the induced linear map $d\psi_{t,x}:T_xM \to \R^n$ of $\psi_t$ at $x \in M$ defined as
+\begin{align*}
+    d\psi_{t,x}(\tau) = \partial_{\tau}\phi_t(x) = \partial_{\tau}\psi_t(x), \quad \tau \in M
+\end{align*}
+we get by \eqref{eq: taylor} that
+\begin{align*}
+    d\psi_{t,x}(\tau) = \tau + t\partial_{\tau}X(x) + \frac{t^2}{2}\partial_{\tau}Z(x) + O(t^3).
+\end{align*}
+We can express the matrix of the map $d\psi_{t,x}$ with respect to the basis $\tau_1, \dots, \tau_m$ of $T_xM$ and $e_1, \dots, e_n$ of $\R^n$, and we get that the matrix has as $i$'th row
+\begin{align*}
+    \partial_{\tau_i}\psi_t(x) = \tau_i + t\partial_{\tau_i}X + \frac{t^2}{2}\partial_{\tau_i}Z + O(t^3)
+\end{align*}
+for $i=1, \dots, m$. Hence, with respect to $\tau_1, \dots, \tau_m$, $(d\psi_{t,x})^*\circ(d\psi_{t,x})$ has matrix $(b_{ij})_{m \times m}$ where
+\begin{align*}
+    b_{ij} &= \partial_{\tau_i} \psi_{t,x} \cdot \partial_{\tau_j} \psi_{t,x} \\
+    &= \delta_{ij} + t(\langle \tau_i, \partial_{\tau_j}X \rangle + \langle \tau_j, \partial_{\tau_i}X \rangle) \\ 
+    & \qquad\quad + t^2\paren{\frac{1}{2}(\langle \tau_i, \partial_{\tau_j}Z \rangle + \langle \tau_j, \partial_{\tau_i}Z \rangle) + \langle \partial_{\tau_i}X, \partial_{\tau_j}X \rangle} + O(t^3).
+\end{align*}
+By a straightforward computation, we see that for symmetric square matrices $I=(\delta_{ij})$, $A=(A_{ij})$ and $B=(B_{ij})$ we have
+\begin{align*}
+    \det(I+tA+t^2B) = 1+t\Tr A + t^2 \Tr B + \frac{1}{2}t^2((\Tr A)^2 -\Tr A^2) + O(t^3).
+\end{align*}
+Letting
+\begin{align*}
+    A_{ij} &= \langle \tau_i, \partial_{\tau_j}X \rangle + \langle \tau_j, \partial_{\tau_i}X \rangle = A_{ji}, \quad \text{and} \\
+    B_{ij} &= \frac{1}{2}(\langle \tau_i, \partial_{\tau_j}Z \rangle + \langle \tau_j, \partial_{\tau_i}Z \rangle) + \langle \partial_{\tau_i}X, \partial_{\tau_j}X \rangle,
+\end{align*}
+we get that
+\begin{align*}
+    J_{\psi_t}^2(x) &= \det((d\psi_{t,x})^* \circ (d\psi_{t,x}() = \det(b_{ij}) \\
+    &= 1 + 2t \sum_{i=1}^m \langle \tau_i, \partial_{\tau_i}X \rangle + t^2 \sum_{i=1}^m \paren{ \angles{\tau_i, \partial_{\tau_i}Z} + |\partial_{\tau_i}X|^2 } + 2t^2 \paren{ \sum_{i=1}^m \angles{\tau_i, \partial_{\tau_i}X} }^2  \\
+    & \qquad\quad - \frac{t^2}{2}\sum_{i,j=1}^m\paren{\angles{\tau_i,\partial_{\tau_j}X} + \angles{\tau_j, \partial_{\tau_i}X}}^2 + O(t^3) \\
+    &= 1 + 2t\Div_M X + t^2 \Div_M Z + t^2\sum_{i=1}^m|\partial_{\tau_i}X|^2 + 2t^2(\Div_M X)^2  \\
+    & \qquad\quad - t^2\sum_{i,j=1}^m\angles{\tau_i, \partial_{\tau_j}X}^2 - t^2\sum_{i,j=1}^m\angles{\tau_i, \partial_{\tau_j}X}\angles{\tau_j, \partial_{\tau_i}X} + O(t^3) \\
+    &= 1 + 2t \Div_M X \\
+    & \qquad\quad + t^2\paren{ \Div_M Z + 2(\Div_M X)^2 +  \sum_{i=1}^m\left| (\partial_{\tau_i}X)^{\perp} \right|^2 - \sum_{i,j=1}^m\angles{\tau_i, \partial_{\tau_j}X}\angles{\tau_j, \partial_{\tau_i}X}} \\
+    & \qquad \quad + O(t^3)
+\end{align*}
+where 
+\begin{align*}
+    (\partial_{\tau_i}X)^{\perp}=\partial_{\tau_i}X - \sum_{j=1}^m\angles{\tau_j, \partial_{\tau_i}X}\tau_j
+\end{align*}
+is the normal part of $\partial_{\tau_i}X$, and $\Div_M X$ is the divergence of $X$ at $x \in M$ with respect to $M$ defined as
+\begin{align*}
+    \Div_M X = \sum_{i=1}^m\angles{\tau_i, \partial_{\tau_i}X}
+\end{align*}
+Finally, using the Taylor expansion, we see that
+\begin{align*}
+    \sqrt{1+x} = 1 + \frac{1}{2}x - \frac{1}{8}x^2 + O(x^3)
+\end{align*}
+and thus
+\begin{align*}
+    J_{\psi_t}(x) &= 1 + t \Div_M X  \\
+    & \qquad \quad + \frac{t^2}{2}\paren{ \Div_M Z + 2(\Div_M X)^2 +  \sum_{i=1}^m\left| (\partial_{\tau_i}X)^{\perp} \right|^2 - \sum_{i,j=1}^m\angles{\tau_i, \partial_{\tau_j}X}\angles{\tau_j, \partial_{\tau_i}X}} \\
+    &\qquad\quad - \frac{t^2}{8}(2\Div_M X)^2 + O(t^3) \\
+    &= 1 + t \Div_M X \\
+    & \qquad\quad + \frac{t^2}{2}\paren{ \Div_M Z + (\Div_M X)^2 +  \sum_{i=1}^m\left| (\partial_{\tau_i}X)^{\perp} \right|^2 - \sum_{i,j=1}^m\angles{\tau_i, \partial_{\tau_j}X}\angles{\tau_j, \partial_{\tau_i}X}} \\ &\qquad\quad + O(t^3).
+\end{align*}
+Hence we can finally say that
+\begin{align*}
+    \frac{\partial}{\partial t}J_{\psi_t}|_{t=0} = \Div_M X,
+\end{align*}
+and thus, by the area formula, we get the first variation formula
+\begin{align*}
+    \frac{d}{dt}\Haus^m(M_t)|_{t=0} &= \int_{M \cap K} \frac{\partial}{\partial t}J_{\psi_t}|_{t=0} \, d\Haus^m \\
+    &= \int_{M \cap K} \Div_M X \, d\Haus^m \\
+    &= \int_{M} \Div_M X \, d\Haus^m \\
+\end{align*}
+where the last inequality is due to the fact that $X$ has support in a subset of $K$. This is very similar to the area functional in the 3 dimensional case.
+
+Furthermore, we get the second variation formula, which is not as pretty
+\begin{align*}
+    \frac{d^2}{dt^2} &\Haus^m(M_t)|_{t=0} \\
+    &= \int_M \paren{ \Div_M Z + (\Div_M X)^2 +  \sum_{i=1}^m\left| (\partial_{\tau_i}X)^{\perp} \right|^2 - \sum_{i,j=1}^m\angles{\tau_i, \partial_{\tau_j}X}\angles{\tau_j, \partial_{\tau_i}X}} \, d\Haus^m.
+\end{align*}
+
+\begin{definition}
+With $\phi_t$, and $K$ as in \eqref{eq: C2 diff}, we say that an $m$-dimensional $C^1$ submanifold $M \subseteq \R^n$ is stationary in an open set $U \subseteq \R^n$ if $\Haus^m(M \cap C) < \infty$ for all compact subsets $C \subseteq U$, if
+\begin{align*}
+    \frac{d}{dt}\Haus^m(M_t)|_{t=0} = 0
+\end{align*}
+For $M_t = \phi_t(M \cap K)$.
+\end{definition}
+By the above discussion, $M$ is stationary in $U$ if and only if
+\begin{align*}
+    \int_{M} \Div_M X \, d\Haus^m = 0
+\end{align*}
+for every $C^1$ map $X:U \to \R^n$ with compact support in $U$.
+
+Let $m<n$. When $M \subseteq \R^n$ is an $m$-dimensional $C^2$ submanifold, $U \subseteq \R^n$ is open such that $\overline{U} \cap M$ is compact, and $H$ is the mean curvature of $M$, then $M$ is stationary in $U$ if and only if $H \equiv 0$ in $M \cap U$.
+
+We will try and generalize the first variation formula to rectifiable $m$-varifolds, along with a definition of a stationary varifold, and a treatment of mean curvature.
+
+So let $U \subseteq \R^n$ be an open set, and let $V(M,\theta)$ be a rectifiable $m$-varifold in $U$. Suppose for simplicity that $\theta(x) \ge 1$ for $\Haus^m$-a.e. $x \in M$. We do this to avoid discussion of approximate tangent spaces, and Jacobians with respect to $\theta$.
+
+Let $N \ge n$, $U'\subseteq \R^N$ be open and $f:U \to U'$ be Lipschitz. Recall that we defined $J_f^M$ by
+\[
+    J^M_f(x) = \sqrt{ \det((d^Mf_x)^* \circ (d^M f_x)) }
+\]
+then we note that if $(M,\theta)$ and $(\tilde M, \tilde \theta)$ are two representatives for the same rectifiable $m$-varifold, $V$, then for $\Haus^m$-a.e. $x \in M \cap \tilde M$, $J_f^M(x)=J_f^{\tilde M}(x)$ and we will thus denote it by $J_f^V$.
+
+By the general area formula \cref{thm: area formula} we get that for every nonnegative $\Haus^m$-measurable mapping $g$ on $M$, and every $\Haus^m$-measurable $A \subseteq M$
+\[
+    \int_A gJ_f^E\, d\Haus^m = \int_{f(M)} \sum_{x \in A \cap f^{-1}(y)} g(x) \, d\Haus^m = \int_{f(M)} \paren{ \int_{A \cap f^{-1}(y) } g \, d\Haus^0 } d\Haus^m.
+\]
+We clearly see that $f(M)$ is an $m$-rectifiable subset of $U'$. Furthermore, if we assume that $f:U \to U'$ is proper (i.e. $f^{-1}(K) \subseteq U$ is compact for every compact $K \subseteq U'$), we can then define $\theta'$ on $U'$ by
+\[
+    \theta'(y) = \sum_{x \in M \cap f^{-1}(y)} \theta(x) = \int_{M \cap f^{-1}(y)} \theta \, d\Haus^0
+\]
+and then define the image varifold $f_{\#}V$ by
+\[
+    f_{\#}V = V(f(M),\theta').
+\]
+Indeed, this is well defined, since
+\[
+    \int_K \theta' \, d\Haus^m = \int_{f(M) \cap K} \theta' \, d\Haus^m = \int_{M \cap f^{-1}(K)} \theta J_f^M\, d\Haus^m
+\]
+for every compact $K \subseteq U'$, so $\theta'$ is locally $\Haus^m$-integrable in $U'$. Therefore $f_{\#}V$ is a rectifiable $m$-varifold in $U'$ with multiplicity $\theta'$. Furthermore
+\[
+    \M_{f_{\#}V } = \int_{f(M)} \theta'\, d\Haus^m = \int_M F_f^M\, d\Haus^m
+\]
+which leads us to defining the first variation of $V$. So let $\{\phi_t\}$ be a 1-parameter family of diffeomorphisms $\phi_t:U \to U$ as in \eqref{eq: C2 diff}. We let $V \llcorner K = V(M \cap K, \theta|_K)$ when $K \subseteq U$ is the compact set from \eqref{eq: C2 diff}. Then
+\[
+    \M_{\phi_{t\#}(V \llcorner K) } = \int_{M \cap K} J_{\phi_t}^M \theta\, d \Haus^m
+\]
+and we can thus compute the first variation as in the $C^1$ case and get that
+\[
+    \frac{d}{dt}\M_{\phi_{t\#}(V \llcorner K) }|_{t=0} = \int_M \Div_M X \, d\mu_V
+\]
+where $X$ is as in \eqref{eq: x and z}, and $\Div_M X$ is the divergence of $X$ with respect to $M$, given by
+\[
+    \Div_M X = \sum_{i=1}^m \angles{\tau_i, \partial_{\tau_i} X(x)}
+\]
+with $\tau_1, \dots, \tau_m$ an orthonormal basis of $T_xM$. We can thus define, exactly as in the case with $C^1$-submanifolds, the following.
+
+\begin{definition}
+A rectifiable $m$-varifold $V=V(M,\theta)$ is \textbf{stationary} in an open set $U \subseteq \R^n$ if
+\[
+    \int_M \Div_M X \, d\mu_V = 0
+\]
+for all $C^1$ mappings $X: U \to \R^n$ with compact support in $U$.
+\end{definition}
+And we also generalize the notion of mean curvature as follows.
+\begin{definition}\label{def: generalized mean curvature}
+Let $V=V(M, \theta)$ be a rectifiable $m$-varifold in an open set $U \subseteq \R^n$. Suppose $H:M \cap U \to \R^n$ is locally $\mu_V$-integrable. Then we say that $V(E, \theta)$ has \textbf{generalized mean curvature} $H$ in $U$, if
+\[
+    \int_U \Div_M X\, d\mu_V = - \int_U X\cdot H\, d\mu_V
+\]
+for all $C^1$ mappings $X: U \to \R^n$ with compact support in $U$.
+\end{definition}
+
+Hence a rectifiable $m$-varifold $V=V(M, \theta)$ is stationary in an open set $U \subseteq \R^n$ if and only if it has generalized mean curvature 0 in $U$.
+
+
+\section{Monotonicity Formulae}
+In \cite{DeL12} the author discusses the monotonicity formulae, specifically for integer rectifiable varifolds. We shall describe them here a little more generally.
+
+Given various restrictions on the generalized mean curvature of a rectifiable $m$-varifold $V=V(M,\theta)$, one can show various results on the monotonicity of the function $\rho \mapsto \rho^{-m}\mu(B_{\rho}(\xi))$ or functions closely related to this. If the generalized mean curvature is zero, one can show that this above function is increasing in $\rho$ and hence that the density
+\[
+    \Theta^m(\mu_V, \xi) = \lim_{\rho \to 0} \frac{\mu_V(B_{\rho}(\xi))}{\omega_m\rho^m}
+\]
+exists and is real for every $\xi \in U$.
+
+We will instead assume that the generalized mean curvature is merely bounded, and arrive at the next result.
+
+First though, if $U \subseteq \R^n$ is open, and $V=V(M,\theta)$ is a rectifiable $m$-varifold in $U$, then for every differentiable $g:U \to \R$, we denote by $\nabla^{\perp}g(x)$ the projection of $\nabla g$ onto $(T_xM)^{\perp}$ for the $\Haus^m$-a.e. $x \in M$ where it is defined.
+
+\begin{theorem}[Monotonicity Formula]\label{thm: monotonicity formula}
+Let $V=V(M, \theta)$ be a rectifiable $m$-varifold in some open set $U \subseteq \R^n$ with generalized mean curvature $H$. Assume that the generalized mean curvature $H$ of $V$ is bounded (i.e. there is a constant $\Lambda$ such that $|H| \le \Lambda$). Let $x \in U$, then for every $0 < \sigma < \rho < \Dist(\xi, \partial U)$ we have
+\[
+    \frac{\mu_V(B_{\rho}(\xi))}{\rho^m} - \frac{\mu_V(B_{\rho}(\xi))}{\sigma^m} = \int_{B_{\rho}(\xi)} \frac{H}{m}(x - \xi) \paren{ \frac{1}{\max\{r,\sigma\}^m} - \frac{1}{\rho^m} } d\mu_V + \int_{ B_{\rho}(\xi) \setminus B_{\sigma}(\xi) } \frac{|\nabla^{\perp} r|^2}{r^m} d\mu_V
+\]
+Where $r=r(x)=|x - \xi|$.
+In particular, the map $\rho \mapsto e^{\Vert H \Vert_{\infty}\rho}\rho^{-m}\mu_V(B_{\rho}(\xi))$ is monotone increasing.
+\end{theorem}
+\begin{proof}
+By translating we can assume that $\xi = 0$, and thus $r(x)=|x|$. Let $\gamma \in C_c^1([0,1))$ with $\gamma \equiv 1$ in some neighborhood of 0. For every $s \in (0, \partial U)$ we define a vector field $X_s$ by $X_s = \gamma\paren{\frac{|x|}{s}}x$. Then $X_s \in C_c^1(U)$ and we can therefore write
+\begin{align}
+    \int \Div_{T_xM} X_s\, d\mu_V = - \int H \cdot X_s\, d\mu_V.\label{eq: allard-40 2.1}
+\end{align}
+Now, $T_xM$ sits inside $\R^n$, and it has an orthonormal basis $e_1, \dots, e_k$ which can be extended to be an orthonormal basis of $\R^n$. We can then compute
+\begin{align}
+    \Div_{T_xM}X_s &= m\gamma\paren{\frac{r}{s}} + \sum_{i=1}^m e_i x \gamma'\paren{\frac{r}{s}} \frac{x\cdot e_i}{|x|s}\nonumber \\
+    &= m\gamma\paren{\frac{r}{s}} +  \frac{r}{s}\gamma'\paren{\frac{r}{s}} \sum_{i=1}^m \paren{\frac{x\cdot e_i}{|x|}}^2\nonumber \\
+    &= m\gamma\paren{\frac{r}{s}} +  \frac{r}{s}\gamma'\paren{\frac{r}{s}} \paren{1 -  \sum_{i=m+1}^n \paren{\frac{x\cdot e_i}{|x|}}^2 }\nonumber \\
+    &= m\gamma\paren{\frac{r}{s}} +  \frac{r}{s}\gamma'\paren{\frac{r}{s}} \paren{1 -  |\nabla^{\perp}r|^2 } \label{eq: allard-40 2.2}
+\end{align}
+We can then insert \eqref{eq: allard-40 2.2} in to \eqref{eq: allard-40 2.1}, divide by $s^{m+1}$ and then integrate between $\sigma$ and $\rho$, which yields
+\begin{align*}
+    &\int_{\sigma}^{\rho}\int_{\R^n} \frac{m}{s^{m+1}}\gamma\paren{\frac{|x|}{s}} \, d\mu_V ds + \int_{\sigma}^{\rho}\int_{\R^n} \frac{|x|}{s^{m+2}} \gamma'\paren{\frac{|x|}{s}} (1 - |\nabla^{\perp}r|^2) \, d\mu_V ds \\
+    & \qquad \quad = -\int_{\sigma}^{\rho}\int_{\R^n} \frac{H \cdot x}{s^{m+1}} \gamma\paren{\frac{|x|}{s}}\, d\mu_V ds
+\end{align*}
+Using Fubini, we can switch the order of integration, and distribute the integrals out, which gives
+\begin{align}
+    &\int_{\R^n} \int_{\sigma}^{\rho} \frac{m}{s^{m+1}}\gamma\paren{\frac{|x|}{s}} + \frac{|x|}{s^{m+2}} \gamma'\paren{\frac{|x|}{s}} \, ds\, d\mu_V \nonumber\\
+    =& \int_{\R^n} |\nabla^{\perp}r|^2 \int_{\sigma}^{\rho} \frac{|x|}{s^{m+2}} \gamma'\paren{\frac{|x|}{s}}\, ds\, d\mu_V - \int_{\R^n} H\cdot x \int_{\sigma}^{\rho} \frac{1}{s^{m+1}}\gamma\paren{\frac{|x|}{s}}\, ds\, d\mu_V \label{eq: allard-40 2.4}
+\end{align}
+By the product rule, it is easily seen that
+\[
+    -\int_{\sigma}^{\rho} \frac{m}{s^{m+1}} \gamma\paren{\frac{|x|}{s}} + \frac{|x|}{s^{m+2}} \gamma'\paren{\frac{|x|}{s}}\, ds = \rho^{-m} \gamma\paren{\frac{|x|}{\rho}} - \sigma^{-m} \gamma\paren{\frac{|x|}{\sigma}}
+\]
+and we can thus rewrite \eqref{eq: allard-40 2.4} as
+\begin{align}
+    \rho^{-m} &\int \gamma\paren{\frac{|x|}{\rho}} d\mu_V(x) - \sigma^{-m} \int \gamma\paren{\frac{|x|}{\sigma}} d\mu_V(x) - \int_{\R^n} H \cdot x \int_{\sigma}^{\rho} s^{-m-1} \gamma\paren{\frac{|x|}{s}}ds\,d\mu_V(x)\nonumber \\
+    =& \int_{\R^n} |\nabla^{\perp}r|^2 \left[ \rho^{-m} \gamma\paren{\frac{|x|}{\rho}} - \sigma^{-m} \gamma\paren{\frac{|x|}{\sigma}} + \int_{\sigma}^{\rho} \frac{m}{s^{m+1}}\gamma\paren{\frac{|x|}{s}} \, ds \right] \,d\mu_V(x).\label{eq: allard-40 2.5}
+\end{align}
+Replacing $\gamma$ with a sequence of mollifiers $\{\gamma_n\}_{n \in \N}$ such that $\gamma_n \to \mathbbm{1}_{(-1,1)}$ from below as $n \to \infty$, we can use the dominated convergence theorem to see that we are allowed to insert $\gamma = \mathbbm{1}_{(0,1)}$ in \eqref{eq: allard-40 2.5}, and get
+\[
+    \int_{\sigma}^{\rho} \frac{m}{s^{m+1}} \mathbbm{1}_{(0,1)}\paren{\frac{|x|}{s}}\, ds = \mathbbm{1}_{B_{\rho}}(x) \int_{\max\{|x|,\sigma\}}^{\rho} \frac{m}{s^{m+1}}\, ds = \paren{\frac{1}{\max\{|x|,\sigma\}^m } - \frac{1}{\rho^m} } \mathbbm{1}_{ B_{\rho} }(x).
+\]
+which finishes the main statement of the theorem.
+
+For the last part of the theorem, define $f(\rho) := \rho^{-m} \mu_V(B_{\rho})$. The main result of this proof then gives us the trivial bound
+\[
+    \frac{f(\rho) - f(\sigma)}{\rho - \sigma} \ge - \frac{\Vert H \Vert_{\infty} }{m} \int_{B_{\rho}} |x| \frac{\max\{|x|,\sigma\}^{-m} - \rho^{-m} }{\rho - \sigma}\, d\mu_V(x) \ge -\frac{\Vert H \Vert_{\infty} }{m} \mu_V(B_{\rho}) \rho \frac{\sigma^{-m} - \rho^{-m} }{\rho - \sigma}.
+\]
+Since $\rho \mapsto \rho^{-m}$ is convex, we can conclude, by setting $\rho = \sigma + \varepsilon$ for some given $\varepsilon > 0$, that
+\begin{equation}
+    \frac{f(\sigma + \varepsilon) - f(\sigma)}{\varepsilon} \ge - \mu_V(B_{\rho}) \Vert H \Vert_{\infty} \frac{(\sigma + \varepsilon)}{\sigma^{m+1}} = - \Vert H \Vert_{\infty} f(\sigma + \varepsilon)\frac{(\sigma + \varepsilon)^{m+1} }{\sigma^{m+1} }.\label{eq: allard-40 2.6}
+\end{equation}
+Finally, let $\psi_{\delta}$ be some smooth non-negative mollifier. We can then take the convolutions of both sides of \eqref{eq: allard-40 2.6} as functions of $\sigma$, and then, letting $\varepsilon \to 0$ we can conclude that $(f * \psi_{\delta})' + \Vert H \Vert_{\infty}(f*\psi_{\delta}) \ge 0$. This implies that the function $g_{\delta}(\rho) := e^{\Vert H \Vert_{\infty}\rho} f * \psi_{\delta}(\rho)$ is monotone increasing. Finally letting $\delta \to 0$ from above, gives us that $\rho \mapsto e^{\Vert H \Vert_{\infty}\rho}\rho^{-m}\mu_V(B_{\rho})$ is monotone increasing as wanted.
+\end{proof}
+
+As a consequence of this theorem, we see that for a rectifiable varifold $V=V(M,\theta)$, the density $\Theta^n(\mu_V,\xi)$ is an upper semi-continuous function on $U$ and coincides with $\theta$ $\mu_V$-a.e. This follows from the monotonicity of $e^{\Vert H \Vert_{\infty}\rho} \rho^{-m}\mu_V(B_{\rho}(x))$ and the fact that $\mu_V=\Theta^n$ $\mu_V$-a.e. (a consequence of the Radon-Nikodym theorem).
+
+One can generalize the above theorem a little further, and instead assume that the generalized mean curvature has an $L^{p}$ condition. One then arrives at a similar conclusion. Again, it becomes evident that $\Theta^n(\mu_V,\xi)$ is an upper semi-continuous function on $U$. We will not prove this here, but the result will be used later.
